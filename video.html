@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Your Project</title>
+    <!--<link rel="stylesheet" href="./video.css">-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Note: This code has been modified to directly embed color values from the provided :root block,
+   as per your explicit request. This means the design will shift from the previous dark,
+   frosted-glass aesthetic to a lighter, purple-themed design based on the new palette.
+   LAB color values are used where specified in the original :root block.
+*/
+
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    /* Using LAB colors directly as specified in the provided :root block */
+    background: linear-gradient(135deg, lab(38.93% 33.84 -44.68));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #3B3B3B; /* --text-color from new :root */
+    position: relative;
+    overflow-x: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: background 0.8s ease-in-out;
+}
+
+/* Background wavy thing (now more subtle, following the new background gradient) */
+body::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    /* Using new glow colors directly from the provided :root block */
+    background: radial-gradient(circle at 20% 80%, #bb56e3 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, #BA68C8 0%, transparent 40%);
+    animation: backgroundWaves 25s infinite alternate ease-in-out;
+    z-index: -1;
+    opacity: 0.25; /* More subtle opacity */
+    transition: background 0.8s ease-in-out;
+}
+
+@keyframes backgroundWaves {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-10%, 10%) scale(1.05); }
+    100% { transform: translate(0, 0) scale(1); }
+}
+
+.whole-page-container {
+    width: 90%;
+    max-width: 800px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.back-to-projects {
+    display: flex;
+    align-items: center;
+    color: #3B3B3B; /* --text-color from new :root */
+    text-decoration: none;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+    padding-left: 10px; /* Aligns with original back-button padding */
+}
+
+.back-to-projects:hover {
+    color: lab(38.93% 33.84 -44.68); /* --primary from new :root */
+    transform: translateX(-5px);
+}
+
+.back-to-projects svg {
+    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+}
+
+
+.main-form-card {
+    background: #fceeff; /* --card-background from new :root */
+    border-radius: 15px;
+    padding: 40px;
+    backdrop-filter: blur(10px); /* Adjusting blur for lighter background */
+    border: 1px solid #e0e0e0; /* Subtle light border */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15); /* --shadow from new :root */
+    animation: fadeInInitial 1s ease-out forwards;
+    opacity: 0;
+    transition: box-shadow 0.3s ease;
+}
+
+.main-form-card:hover {
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.2), 0 0 25px rgba(138, 43, 226, 0.6); /* --focus-shadow-color from new :root */
+}
+
+@keyframes fadeInInitial {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #673AB7; /* --heading-color from new :root */
+    letter-spacing: 0.5px;
+}
+
+.step-progress-bar {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+    position: relative;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 0 10px;
+}
+
+.step-progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    /* background-color: #C7B9F5; --input-border */
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+.single-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    cursor: default;
+    opacity: 0.6;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    flex-basis: auto;
+    min-width: 80px;
+    flex-grow: 1;
+}
+
+.single-step.active {
+    opacity: 1;
+    transform: translateY(-5px) scale(1.05);
+}
+
+.single-step.active .icon-circle {
+    animation: pulseGlow 1.5s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 15px rgba(138, 43, 226, 0.6), 0 0 5px lab(38.93% 33.84 -44.68); /* --focus-shadow-color, --active-step-icon-bg */
+    }
+    100% {
+        box-shadow: 0 0 25px rgba(138, 43, 226, 0.6), 0 0 10px lab(38.93% 33.84 -44.68); /* --focus-shadow-color, --active-step-icon-bg */
+    }
+}
+
+.single-step .icon-circle {
+    background: #F9F7FF; /* --input-background from new :root */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+    border: 1px solid #C7B9F5; /* --input-border from new :root */
+    transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.single-step.active .icon-circle {
+    background: lab(38.93% 33.84 -44.68); /* --active-step-icon-bg (from --primary) */
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.6); /* --focus-shadow-color */
+    border-color: lab(38.93% 33.84 -44.68); /* --active-step-icon-bg */
+    transform: scale(1.1);
+}
+.step:hover {
+    opacity: 0.9;
+    transform: translateY(-5px);
+}
+.single-step svg {
+    color: #3B3B3B; /* --text-color from new :root */
+    width: 24px;
+    height: 24px;
+    transition: color 0.3s ease;
+}
+
+.single-step.active svg {
+    color: #fff; /* Active icons are white */
+}
+
+.single-step span {
+    font-size: 0.85em;
+    text-align: center;
+    line-height: 1.2;
+    color: #3B3B3B; /* --text-color from new :root */
+}
+
+.form-part-content label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #3B3B3B; /* --text-color from new :root */
+    font-size: 1.1em;
+}
+
+/* Specific styling for the upload area */
+.upload-area {
+    border: 2px dashed #C7B9F5; /* --input-border from new :root */
+    border-radius: 10px;
+    padding: 30px 20px;
+    text-align: center;
+    margin-bottom: 25px;
+    background-color: #F9F7FF; /* --input-background from new :root */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.upload-area:hover {
+    border-color: lab(38.93% 33.84 -44.68); /* --focus-border-color (from --primary) */
+    background-color: #F3F0FF; /* --bg-light from new :root */
+}
+
+.upload-area svg {
+    width: 45px;
+    height: 45px;
+    color: #673AB7; /* Similar to --heading-color or --focus-border-color */
+    margin-bottom: 15px;
+}
+
+.upload-area p {
+    margin: 0 0 10px 0;
+    color: #3B3B3B; /* --text-color from new :root */
+    font-size: 0.95em;
+}
+
+.select-video-button {
+    background-color: lab(38.93% 33.84 -44.68); /* --accent / --primary from new :root */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin-top: 15px;
+}
+
+.select-video-button:hover {
+    background-color: color(lab(38.93% 33.84 -44.68) lightness(calc(l - 5%))); /* Darken primary slightly on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.6); /* --focus-shadow-color */
+}
+
+.upload-hint {
+    font-size: 0.85em;
+    color: #3B3B3B; /* --text-color from new :root */
+    opacity: 0.8;
+    margin-top: 10px;
+}
+
+/* Input fields (text and url) & textarea */
+.form-part-content input[type="text"],
+.form-part-content input[type="url"],
+.form-part-content textarea {
+    width: calc(100% - 30px);
+    padding: 15px;
+    margin-bottom: 25px;
+    border: 1px solid #C7B9F5; /* --input-border from new :root */
+    border-radius: 8px;
+    background-color: #F9F7FF; /* --input-background from new :root */
+    color: #3B3B3B; /* --text-color from new :root */
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    resize: vertical;
+    min-height: 50px;
+    box-sizing: border-box;
+}
+
+.form-part-content input[type="text"]:focus,
+.form-part-content input[type="url"]:focus,
+.form-part-content textarea:focus {
+    outline: none;
+    border-color: lab(38.93% 33.84 -44.68); /* --focus-border-color (from --primary) */
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.6); /* --focus-shadow-color */
+    transform: scale(1.01);
+    background-color: #fff; /* White background on focus for clarity */
+}
+
+.form-part-content input[type="text"]:hover,
+.form-part-content input[type="url"]:hover,
+.form-part-content textarea:hover {
+    border-color: lab(38.93% 33.84 -44.68); /* --focus-border-color */
+    box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.6); /* --focus-shadow-color */
+    transform: translateY(-2px);
+}
+
+.tag-input-group {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 15px;
+}
+
+.tag-input-group input[type="text"] {
+    flex-grow: 1;
+    margin-bottom: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.add-tag-button {
+    background-color: #F9F7FF; /* --input-background from new :root */
+    border: 1px solid #C7B9F5; /* --input-border from new :root */
+    border-left: none;
+    color: #3B3B3B; /* --text-color from new :root */
+    font-size: 1.5em;
+    padding: 0 20px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+.add-tag-button:hover {
+    background-color: lab(38.93% 33.84 -44.68); /* --accent / --primary from new :root */
+    color: #fff;
+    transform: scale(1.02);
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.6); /* --focus-shadow-color */
+}
+
+.tag-hint {
+    font-size: 0.9em;
+    color: #3B3B3B; /* --text-color from new :root */
+    opacity: 0.8;
+    margin-top: -10px;
+    margin-bottom: 25px;
+}
+
+.url-hint {
+    font-size: 0.85em;
+    color: #3B3B3B; /* --text-color from new :root */
+    opacity: 0.8;
+    margin-top: -5px;
+    margin-bottom: 20px;
+}
+
+.button-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.back-btn,
+.next-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.05em;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+.back-btn {
+    background-color: #f2f2f2; /* --button-cancel-bg from new :root */
+    color: #333333; /* --button-cancel-text from new :root */
+    border: 1px solid #e0e0e0; /* Similar to --button-cancel-hover */
+}
+
+.back-btn:hover {
+    background-color: #e0e0e0; /* --button-cancel-hover from new :root */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* --button-cancel-hover-glow */
+}
+
+.next-btn {
+    /* Using the linear-gradient from --button-continue-enabled-bg directly with LAB colors */
+    background: linear-gradient(to right, lab(38.93% 33.84 -44.68), lab(70.93% 18.14 -31.01));
+    color: #ffffff; /* --button-continue-text from new :root */
+}
+
+.next-btn:hover {
+    /* Using the linear-gradient from --button-continue-enabled-hover directly with LAB colors */
+    background: linear-gradient(to right, lab(70.93% 18.14 -31.01), lab(38.93% 33.84 -44.68));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4); /* --button-continue-hover-glow */
+    filter: brightness(1.1);
+}
+
+/* Placeholders */
+::placeholder {
+    color: rgba(59, 59, 59, 0.6); /* Adjusted to be darker for light background */
+    opacity: 1;
+}
+:-ms-input-placeholder {
+    color: rgba(59, 59, 59, 0.6);
+}
+::-ms-input-placeholder {
+    color: rgba(59, 59, 59, 0.6);
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+    .main-form-card {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.6em;
+    }
+
+    .step-progress-bar {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        padding: 0;
+    }
+
+    .step-progress-bar::before {
+        display: none;
+    }
+
+    .single-step {
+        width: 45%;
+        margin-bottom: 15px;
+    }
+
+    .button-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .back-btn,
+    .next-btn {
+        width: 100%;
+    }
+
+    .tag-input-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .tag-input-group input[type="text"] {
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    .add-tag-button {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        border-left: 1px solid #C7B9F5; /* --input-border */
+        height: 50px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="whole-page-container">
+        <!-- <a href="#" class="back-button"> -->
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"> -->
+                <!-- <line x1="19" y1="12" x2="5" y2="12"></line> -->
+                <!-- <polyline points="12 19 5 12 12 5"></polyline> -->
+            <!-- </svg> -->
+            <!-- Back to Projects -->
+        <!-- </a> -->
+
+        <div class="main-form-card">
+            <h1 style="color: #673AB7;">Upload Your Project</h1>
+            <div class="step-progress-bar">
+                <div class="single-step">
+                    <div class="icon-circle"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div>
+                    <span>Project Details</span>
+                </div>
+                <div class="single-step">
+                    <div class="icon-circle"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-branch"><line x1="6" y1="3" x2="6" y2="15"></line><path d="M18 6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path><path d="M6 18a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path><path d="M18 18a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path><path d="M8.59 16.59l4.83-4.83"></path><path d="M15.41 7.41l-4.83 4.83"></path></svg></div>
+                    <span>Repository & Tags</span>
+                </div>
+                <div class="single-step active"> <div class="icon-circle"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-video"><path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div>
+                    <span>Upload Demo</span>
+                </div>
+                <div class="single-step">
+                    <div class="icon-circle"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></div>
+                    <span>Review & Submit</span>
+                </div>
+            </div>
+
+            <div class="form-part-content">
+                <label>Upload Demo Video</label>
+                <div class="upload-area">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-video">
+                        <path d="M23 7l-7 5 7 5V7z"></path>
+                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                    </svg>
+                    <p>Drag and drop your video file here or click to browse</p>
+                    <button class="select-video-button">Select Video</button>
+                    <p class="upload-hint">Supported formats: MP4, WebM, MOV (max 100MB)</p>
+                </div>
+
+                <label for="videoUrlInput">Or Provide a Video URL</label>
+                <input type="url" id="videoUrlInput" placeholder="https://youtube.com/watch?v=...">
+                <p class="url-hint">YouTube, Vimeo, or other video hosting links</p>
+            </div>
+
+            <div class="button-row">
+                <button class="back-btn"><a href = "one.html" style = "text-decoration: none;">Back</a></button>
+                <button class="next-btn"><a href = "review_submit.html" style = "text-decoration: none; color:white">Continue</a></button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

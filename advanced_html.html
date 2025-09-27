@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Advanced CSS & SASS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <style>
+        :root {
+            /* Colors from the FIRST code snippet (Tech Pulse homepage) */
+            --main-color: lab(38.93% 33.84 -44.68); /* Deep Blue/Purple */
+            --main-color-50: lab(94.73% 1.77 -3.74); /* Lighter Blue/Cyan, almost white */
+            --secondary-color: #090909; /* Black */
+            --text-color: white; /* White */
+
+            /* Adapting existing variables in this document to the new palette */
+            --body-bg: var(--main-color); /* Main body background is deep blue/purple */
+            --body-text-color: var(--text-color); /* General body text is white */
+
+            /* Section and Card Backgrounds */
+            --section-bg: white; /* Cards are now white */
+            --code-bg: rgba(0, 0, 0, 0.2); /* Darker transparent black for code blocks */
+
+            /* Text Colors within sections */
+            --section-heading-color: var(--main-color); /* Deep Blue/Purple for section headings */
+            --section-subheading-color: var(--main-color); /* Deep Blue/Purple for subheadings */
+            --section-paragraph-color: var(--main-color); /* Deep Blue/Purple for paragraphs */
+            --list-item-icon-color: var(--main-color); /* Deep Blue/Purple for list icons */
+            --code-text-color: var(--secondary-color); /* Black for code text */
+
+
+            /* Buttons */
+            --action-button-bg: var(--secondary-color); /* Black for action buttons */
+            --action-button-text: var(--text-color); /* White text for action buttons */
+
+            /* Borders and Shadows */
+            --card-border: rgba(0, 0, 0, 0.1); /* Dark border for white sections */
+            --shadow-color: rgba(0, 0, 0, 0.2); /* Adjusted shadow for white cards on dark background */
+        }
+
+        body {
+            /* Updated font-family to Nunito */
+            font-family: 'Nunito', sans-serif; 
+            background: var(--body-bg); /* Deep blue/purple background */
+            color: var(--body-text-color); /* White text */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px; 
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif; /* Poppins kept for headings */
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px var(--shadow-color);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        p.subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            color: var(--section-paragraph-color); /* Deep Blue/Purple */
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+            opacity: 0;
+        }
+
+        .course-section {
+            background: var(--section-bg); /* White background for cards */
+            backdrop-filter: blur(8px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: left;
+            box-shadow: 0 8px 20px var(--shadow-color);
+            border: 1px solid var(--card-border); /* Dark border */
+            animation: fadeIn 1s ease-out 0.6s forwards;
+            opacity: 0;
+            color: var(--section-paragraph-color); /* Default text color inside sections is violet */
+        }
+
+        .course-section h2 {
+            font-family: 'Poppins', sans-serif; /* Poppins kept for headings */
+            font-size: 2.2rem;
+            color: var(--section-heading-color); /* Deep Blue/Purple for section headings */
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .course-section h3 {
+            font-family: 'Poppins', sans-serif; /* Poppins kept for headings */
+            font-size: 1.8rem;
+            color: var(--section-subheading-color); /* Deep Blue/Purple for subheadings */
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Darker border for contrast on white */
+            padding-bottom: 5px;
+        }
+
+        .course-section p, .course-section ul {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: var(--section-paragraph-color); /* Deep Blue/Purple for paragraphs */
+        }
+
+        .course-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .course-section ul li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            color: var(--section-paragraph-color); /* Deep Blue/Purple for list items */
+        }
+
+        .course-section ul li::before {
+            content: '✅'; /* Checkmark icon */
+            position: absolute;
+            left: 0;
+            color: var(--list-item-icon-color); /* Deep Blue/Purple for list icons */
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        pre {
+            background-color: var(--code-bg); /* Darker transparent black for code blocks */
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        code {
+            font-family: 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+            font-size: 0.95rem;
+            color: var(--code-text-color); /* Black for code text */
+            white-space: pre-wrap; /* Preserve whitespace and wrap */
+            word-break: break-all; /* Break long words */
+        }
+
+        .action-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--action-button-bg); /* Black for action buttons */
+            color: var(--action-button-text); /* White text for action buttons */
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            margin: 10px;
+        }
+
+        .action-button:hover {
+            background: color-mix(in srgb, var(--action-button-bg), white 15%); /* Slightly lighter black on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 50px;
+            padding: 12px 30px;
+            background: var(--main-color-50); /* Lighter blue/cyan for back button */
+            color: var(--secondary-color); /* Black text for back button */
+            border: 1px solid rgba(0, 0, 0, 0.3); /* Darker border for contrast */
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .back-button:hover {
+            background: color-mix(in srgb, var(--main-color-50), black 10%); /* Slightly darker on hover */
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            p.subtitle {
+                font-size: 1.2rem;
+            }
+            .course-section {
+                padding: 20px;
+            }
+            .course-section h2 {
+                font-size: 1.8rem;
+            }
+            .course-section p, .course-section ul, pre code {
+                font-size: 1rem;
+            }
+            .action-button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            .back-button {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            p.subtitle {
+                font-size: 1rem;
+                margin-bottom: 30px;
+            }
+            .course-section h2 {
+                font-size: 1.5rem;
+            }
+            .course-section p, .course-section ul, pre code {
+                font-size: 0.9rem;
+            }
+            .action-button {
+                display: block; /* Stack buttons on small screens */
+                width: calc(100% - 20px); /* Adjust for margin */
+                margin: 10px auto;
+            }
+            .video-wrapper {
+                padding-bottom: 75%; /* Adjust for taller video on mobile */
+            }
+        }
+        
+ html, body {
+  margin: 0;
+  padding: 0;
+}
+
+
+a { text-decoration: none; color: inherit; }
+
+    .navbar {
+      background:white;
+      color:var(--main-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 30px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 10001;
+      flex-wrap: wrap;
+      width: 100%;
+   
+    }
+
+    .profile-menu {
+      position: relative;
+    }
+
+    .profile-icon {
+      font-size: 28px;
+      color:var(--main-color);
+      cursor: pointer;
+      margin-left: 15px;
+    }
+
+    .dropdown { /* Existing dropdown for profile menu */
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      display: none;
+      font-size: 18px;
+      flex-direction: column;
+      min-width: 180px;
+      z-index: 1000;
+    }
+
+    .dropdown a {
+      padding: 10px 15px;
+      color:var(--main-color);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #f0e0ff;
+    }
+
+    .dropdown a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown a:hover {
+      background-color: var(--main-color-50);
+    }
+
+    /* New styles for Learning Path dropdown (desktop) */
+    .nav-links .dropdown-container {
+      position: relative;
+    }
+
+    .nav-links .dropdown-container .dropdown {
+        position: absolute; /* positioned relative to .dropdown-container */
+        top: 100%; /* Below the parent link */
+        left: 0; /* Align with parent link */
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        min-width: 180px;
+        z-index: 101;
+        padding: 5px 0; /* Adjust padding */
+    }
+
+    .nav-links .dropdown-container:hover .dropdown {
+        display: flex; /* Show on hover */
+    }
+
+    .nav-links .dropdown-container .dropdown a {
+        padding: 10px 15px;
+        color: #be3af2;
+        font-weight: 500;
+        border-bottom: 1px solid #f0e0ff;
+        white-space: nowrap; /* Prevent text wrap */
+    }
+
+    .nav-links .dropdown-container .dropdown a:last-child {
+        border-bottom: none;
+    }
+
+    .nav-links .dropdown-container .dropdown a:hover {
+        background-color: #f5eaff;
+    }
+    /* End new styles for Learning Path dropdown */
+
+     .logo-text { font-size: 20px; font-weight: 700; color: var(--main-color); }
+
+    .nav-links { display: flex; gap: 20px; }
+    .nav-links a {
+  position: relative;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--main-color);
+  text-decoration: none;
+}
+
+/* Underline animation ONLY for links without .no-underline */
+.nav-links a:not(.no-underline)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 2px;
+  width: 0;
+  background-color: var(--main-color);
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:not(.no-underline):hover::after {
+  width: 100%;
+}
+
+/* Optional hover background (remove if not needed) */
+.nav-links a:hover {
+  background-color: transparent;
+}
+
+
+   
+   
+
+    .nav-actions { display: none; }
+
+    .hamburger { display: none; font-size: 28px; cursor: pointer; color:var(--main-color); }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 15px;
+      background:lab(38.93% 33.84 -44.68)  ;
+      padding: 20px 30px;
+      width: 50%;
+      position: fixed;
+      top: 65px;
+      left: 0;
+      right: 0;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 1100;
+      font-size: 18px;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease-out;
+    }
+
+    .mobile-menu.show {
+      display: flex;
+      transform: translateY(0);
+    }
+
+    .mobile-menu a {
+      color: var(--text-color);
+      font-weight: 600;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(126, 58, 242, 0.1);
+    }
+    .mobile-menu a:hover{
+      color: #ffffff;
+      height: 40px;
+      background-color: #c5b1f1;
+      border-radius: 5px;
+      padding-top:5px;
+      padding-left: 12px;
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    /* Override for the main navigation links in the mobile menu */
+    .mobile-menu > a { /* Target direct children <a> tags of mobile-menu */
+      border-bottom: none; /* Remove the border-bottom */
+    }
+
+    /* Styles for the new mobile profile dropdown */
+    .mobile-profile-toggle {
+      color: var(--text-color);
+      font-weight: 600;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(126, 58, 242, 0.1);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .mobile-profile-toggle i {
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .mobile-profile-toggle.active i {
+      transform: rotate(90deg); /* Rotate arrow when active */
+    }
+
+    .mobile-profile-submenu {
+      display: none; /* Hidden by default */
+      flex-direction: column;
+      padding-left: 20px; /* Indent submenu items */
+      background:var(--main-color-50); /* Slightly different background for submenu */
+      border-radius: 5px;
+      margin-top: 10px; /* Adjust spacing */
+      padding-top: 10px;
+      padding-bottom: 10px;
+      gap:10px;
+      background-color: #fcf6fe;
+      
+    }
+    .mobile-profile-submenu a:hover{
+      color:var(--main-color);
+    }
+    .mobile-profile-submenu a {
+      border-bottom: none; /* Remove border from last submenu item */
+      padding: 5px 0;
+      color: var(--main-color); /* Color for submenu items */
+      font-weight: 500;
+
+    }
+    .mobile-profile-submenu a:hover {
+       background-color: var(--main-color-50); /* No hover background for simple links */
+       text-decoration: none;
+
+    }
+    /* End of styles for new mobile profile dropdown */
+
+
+    .mobile-menu .mobile-nav-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .mobile-menu .mobile-nav-buttons a {
+      padding: 10px 15px;
+      text-align: center;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+      border-bottom: none;
+       background: linear-gradient(135deg, var(--main-color-50), var(--secondary-color));
+    }
+
+
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-actions { display: none; }
+      .profile-menu { display: none; } /* Hide profile menu on smaller screens */
+      .hamburger { display: block; order: 2; }
+      .logo-text { order: 1; }
+      .navbar { justify-content: space-between; }
+
+      .mobile-menu .mobile-nav-buttons {
+        display: none;
+      }
+
+      /* Styles for mobile learning path dropdown */
+      .mobile-learning-path-toggle {
+        color: var(--text-color);
+        font-weight: 600;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(126, 58, 242, 0.1);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .mobile-learning-path-toggle i {
+        transition: transform 0.3s ease-in-out;
+      }
+      .mobile-learning-path-toggle.active i {
+        transform: rotate(90deg);
+      }
+      .mobile-learning-path-submenu {
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        padding-left: 20px;
+        background: rgba(240, 231, 255, 0.5);
+        border-radius: 5px;
+        margin-top: -10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        gap: 10px;
+        background-color: #fcf6fe;
+      }
+      .mobile-learning-path-submenu a {
+        border-bottom: none;
+        padding: 5px 0;
+        color: var(--main-color);
+        font-weight: 500;
+      }
+      .mobile-learning-path-submenu a:hover {
+        background-color: var(--main-color-50);
+        text-decoration: none;
+      }
+    }
+
+  
+
+    </style>
+</head>
+<body>
+     <div class="navbar">
+    <div class="logoimg"><img src="./Img/Brain Meets Circuitry Icon.png" width="50"></div>
+    <div class="logo-text">Tech Pulse</div>
+   
+
+    <div class="nav-links">
+      <a href="tech3.html">Home</a>
+      <div class="dropdown-container">
+        <a href="#" class="no-underline">Learning Path</a>
+        <div class="dropdown">
+          <a href="explore_courses.html">Explore Courses</a>
+          <a href="knowledgeenter.html">Knowledge Check</a>
+        </div>
+      </div>
+     
+      <a href="projects.html" >Projects</a>
+      <a href="internships.html">Internships</a>
+       <a href="teamconnect">Team Connect</a>
+       <a href="resume.html">Resume Builder</a>
+    </div>
+
+    <div class="profile-menu">
+      <i class="fas fa-user-circle profile-icon" onclick="toggleProfileMenu()"></i>
+      <div class="dropdown" id="profileDropdown">
+        <a href="todo.html">To-Do Tracker</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="Remainders.html">Reminders</a>
+        <a href="signup1.html">Sign Up</a>
+        <a href="login3.html">Log In</a>
+        <a href="#">Logout</a>
+      </div>
+    </div>
+
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="tech3.html">Home</a>
+    <div class="mobile-learning-path-section">
+      <div class="mobile-learning-path-toggle" onclick="toggleMobileLearningPathSubmenu()">
+        Learning Path <i class="fas fa-chevron-right"></i>
+      </div>
+      <div class="mobile-learning-path-submenu">
+        <a href="explore_courses.html">Explore Courses</a>
+        <a href="knowledgeenter.html">Knowledge Check</a>
+      </div>
+    </div>
+    <a href="projects.html">Projects</a>
+    <a href="internships.html">Internships</a>
+    <a href="teamconnect">Team Connect</a>
+    <a href="resume.html">Resume Builder</a>
+
+    <div class="mobile-profile-section">
+      <div class="mobile-profile-toggle" onclick="toggleMobileProfileSubmenu()">
+        Profile <i class="fas fa-chevron-right"></i>
+      </div>
+      <div class="mobile-profile-submenu">
+        <a href="todo.html">To-Do Tracker</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="Remainders.html">Reminders</a>
+        <a href="signup1.html">Sign Up</a>
+        <a href="login3.html">Log In</a>
+        <a href="#">Logout</a>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+        <h1>Advanced CSS</h1>
+        <p class="subtitle">Unlock the full potential of web styling for modern, responsive, and high-performance applications.</p>
+
+        <div class="course-section">
+            <h2>About This Course</h2>
+            <p>Welcome to the <strong>Professional Advanced CSS & SASS</strong> course! This program is meticulously designed to elevate your CSS skills from intermediate to expert level. If you've mastered the basics of HTML and CSS and are ready to tackle complex layouts, dynamic animations, and scalable stylesheets, this course is for you.</p>
+            <p>We'll go beyond simple styling, diving deep into the powerful features that professional front-end developers use daily. You'll not only learn the theoretical aspects but also gain extensive hands-on experience through practical exercises, coding challenges, and a final capstone project that will be a valuable addition to your portfolio. Prepare to build complex, maintainable, and highly performant user interfaces that stand out in today's competitive web landscape.</p>
+            <p>By the end of this course, you'll be able to architect robust CSS solutions, optimize for performance, and create stunning, accessible user experiences.</p>
+        </div>
+
+        <div class="course-section">
+            <h2>What You Will Learn (Course Modules)</h2>
+            <p>This course is structured into several modules, each building upon the last to provide a comprehensive understanding of advanced CSS and SASS concepts:</p>
+            <ul>
+                <li><strong>Module 1: Advanced Selectors & Specificity Mastery</strong>
+                    <p>Go beyond basic selectors. Learn about attribute selectors, pseudo-classes (like `:nth-child`, `:not()`, `:has()`), pseudo-elements (`::before`, `::after`), and understand the intricate rules of CSS specificity and the cascade to write predictable and powerful styles.</p>
+                </li>
+                <li><strong>Module 2: CSS Custom Properties (Variables) & Theming</strong>
+                    <p>Discover the true power of CSS variables. Learn to define, scope, and use custom properties for dynamic theming, component customization, and reducing code repetition. We'll explore how they interact with JavaScript for truly interactive designs.</p>
+                </li>
+                <li><strong>Module 3: Flexbox & Grid Layout Masterclass</strong>
+                    <p>Deep dive into the two most powerful CSS layout modules. Master Flexbox for one-dimensional alignment and distribution, and unlock the full potential of CSS Grid for complex two-dimensional layouts, including implicit grids, named lines, and subgrid for nested grid structures.</p>
+                </li>
+                <li><strong>Module 4: CSS Animations & Transitions: Bringing UIs to Life</strong>
+                    <p>Craft smooth, engaging, and performant UI animations. Explore `transition` properties, `transform` functions (translate, rotate, scale, skew), and `@keyframes` for complex multi-step animations. Learn about animation-timing-functions, delays, and iteration counts.</p>
+                </li>
+                <li><strong>Module 5: Professional Responsive Design Strategies</strong>
+                    <p>Move beyond basic media queries. Learn about advanced responsive techniques including responsive images (`srcset`, `sizes`, `<picture>`), fluid typography (`clamp()`, `vw` units), and designing for different device orientations and input methods.</p>
+                </li>
+                <li><strong>Module 6: SASS/SCSS: Preprocessing for Scalability</strong>
+                    <p>Transform your CSS workflow with SASS. Master variables, nesting, partials, mixins (with arguments and content), functions, and inheritance (`@extend`). Learn how to structure large SASS projects for maximum efficiency and maintainability.</p>
+                </li>
+                <li><strong>Module 7: CSS Architecture: BEM, ITCSS & Beyond</strong>
+                    <p>Understand methodologies for organizing large CSS codebases. Explore BEM (Block, Element, Modifier) for highly modular and reusable components, and ITCSS (Inverted Triangle CSS) for managing specificity and the cascade in a structured way.</p>
+                </li>
+                <li><strong>Module 8: Web Performance Optimization with CSS</strong>
+                    <p>Learn critical techniques to make your stylesheets load faster and render more efficiently. Topics include critical CSS, optimizing asset delivery, reducing render-blocking CSS, and understanding browser rendering pipelines.</p>
+                </li>
+                <li><strong>Module 9: Accessibility (A11y) in Advanced CSS</strong>
+                    <p>Build inclusive web experiences. Learn how CSS choices impact accessibility, focusing on proper focus styles, semantic HTML with ARIA attributes, color contrast, and respecting user preferences like `prefers-reduced-motion`.</p>
+                </li>
+                <li><strong>Module 10: Modern CSS Paradigms & Tooling</strong>
+                    <p>Explore contemporary approaches like CSS-in-JS, Utility-First CSS (e.g., Tailwind CSS concepts), and PostCSS. Understand the pros and cons of each and when to apply them in real-world projects.</p>
+                </li>
+                <li><strong>Module 11: Advanced Debugging & Browser DevTools</strong>
+                    <p>Become a master debugger. Learn advanced techniques using browser developer tools to diagnose and fix complex CSS issues, understand layout problems, and analyze rendering performance.</p>
+                </li>
+                <li><strong>Module 12: Final Capstone Project & Portfolio Building</strong>
+                    <p>Consolidate all your learning by building a complex, professional-grade web project from scratch. This project will incorporate all advanced CSS and SASS techniques, ready for your portfolio.</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="course-section">
+            <h2>Video Lecture: CSS Grid Deep Dive - Mastering 2D Layouts</h2>
+            <p>This video provides an in-depth look into CSS Grid Layout, one of the most powerful tools for modern web design. You'll learn how to create complex two-dimensional layouts with ease, control item placement, and build truly responsive designs. This lecture covers:</p>
+            <ul>
+                <li><strong>Defining Grids:</strong> How to set up rows and columns using `grid-template-columns` and `grid-template-rows`.</li>
+                <li><strong>Placing Items:</strong> Using `grid-column`, `grid-row`, and `grid-area` to position elements precisely.</li>
+                <li><strong>Implicit Grids:</strong> Understanding how Grid handles content that extends beyond explicitly defined tracks.</li>
+                <li><strong>Named Lines & Areas:</strong> Making your grid code more readable and maintainable.</li>
+                <li><strong>Alignment & Justification:</strong> Mastering `align-items`, `justify-items`, `align-content`, and `justify-content` for perfect spacing.</li>
+                <li><strong>Introduction to Subgrid:</strong> Creating nested grid contexts that inherit properties from their parent.</li>
+            </ul>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/rg7Fvvl3taU?si=abcdefg" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <p><i>Note: The video above is a placeholder. In a real course, you would find a relevant, high-quality lecture on CSS Grid here.</i></p>
+        </div>
+
+        <div class="course-section">
+            <h2>Learn by Example: Practical Advanced CSS & SASS</h2>
+            <p>To truly master advanced CSS, it's essential to see how these concepts are applied in real code. Below are explanations and examples for some core topics you'll encounter.</p>
+
+            <h3>Example 1: Dynamic Theming with CSS Custom Properties</h3>
+            <p>CSS Custom Properties (variables) allow you to define values once and reuse them throughout your stylesheet. This is incredibly powerful for theming and quick global changes. Here's how to set up a basic light/dark theme switch:</p>
+            <pre><code>
+/* style.css */
+:root {
+  --background-color: #f0f2f5; /* Light background */
+  --text-color: #333; /* Dark text */
+  --card-background: #ffffff;
+}
+
+body.dark-theme {
+  --background-color: #2c3e50; /* Dark background */
+  --text-color: #ecf0f1; /* Light text */
+  --card-background: #34495e;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card {
+  background-color: var(--card-background);
+  color: var(--text-color);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* JavaScript to toggle theme (example) */
+// document.getElementById('theme-toggle').addEventListener('click', () => {
+//   document.body.classList.toggle('dark-theme');
+// });
+            </code></pre>
+            <p><strong>Explanation:</strong> We define variables on the `:root` pseudo-class (global scope). When the `dark-theme` class is added to the `body`, these variables are overridden, and thanks to the cascade, all elements using `var()` will automatically update their styles, creating a seamless theme switch.</p>
+
+            <h3>Example 2: Responsive Layout with CSS Grid</h3>
+            <p>CSS Grid is perfect for creating complex, responsive layouts. This example shows a simple 3-column layout that collapses to a single column on small screens.</p>
+            <pre><code>
+/* style.css */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  gap: 20px; /* Space between grid items */
+  padding: 20px;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr; /* Single column on screens <= 768px */
+  }
+}
+
+/* HTML Structure (example) */
+/*
+<div class="grid-container">
+  <div class="grid-item">Item 1</div>
+  <div class="grid-item">Item 2</div>
+  <div class="grid-item">Item 3</div>
+</div>
+*/
+            </code></pre>
+            <p><strong>Explanation:</strong> The `.grid-container` uses `display: grid` and `grid-template-columns: repeat(3, 1fr)` to create three equally wide columns. The `@media` query then changes `grid-template-columns` to `1fr` for screens up to 768px wide, making the items stack vertically, demonstrating responsive design with Grid.</p>
+
+            <h3>Example 3: Reusable Styles with SASS Mixins</h3>
+            <p>SASS mixins allow you to define reusable blocks of CSS that can be included in multiple rulesets, keeping your code DRY (Don't Repeat Yourself).</p>
+            <pre><code>
+/* style.scss (SASS file) */
+@mixin button-styles($bg-color, $text-color) {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: $bg-color;
+  color: $text-color;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    filter: brightness(1.1); /* Slightly brighter on hover */
+  }
+}
+
+.primary-button {
+  @include button-styles(#3498db, #ffffff); /* Blue button */
+}
+
+.secondary-button {
+  @include button-styles(#2ecc71, #ffffff); /* Green button */
+}
+
+/* This SASS will compile to CSS like this: */
+/*
+.primary-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #3498db;
+  color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+.primary-button:hover {
+  filter: brightness(1.1);
+}
+
+.secondary-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #2ecc71;
+  color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+.secondary-button:hover {
+  filter: brightness(1.1);
+}
+*/
+            </code></pre>
+            <p><strong>Explanation:</strong> The `button-styles` mixin defines common properties for buttons. We then `@include` this mixin in `.primary-button` and `.secondary-button`, passing different colors as arguments. This avoids repeating the same CSS properties for different button types.</p>
+        </div>
+
+        <div class="course-section">
+            <h2>Test Your Knowledge: Advanced CSS Quiz</h2>
+            <p>After reviewing the course content, watching the video lecture, and going through the practical examples, you should now have a solid foundation in advanced CSS and SASS. It's time to put your knowledge to the ultimate test!</p>
+            <p>This quiz will challenge your understanding of advanced CSS concepts, including Grid, Flexbox, Custom Properties, SASS features, responsive design principles, and general best practices for modern web styling.</p>
+            <p>The quiz consists of multiple-choice and possibly some short answer questions designed to reinforce key learnings and identify any areas where you might need further review. Aim for a high score to demonstrate your mastery and readiness for professional-level front-end development!</p>
+            <a href="#" class="action-button">Start Quiz</a>
+            <p><i>(Quiz functionality to be implemented in a separate file, e.g., `advanced-css-quiz.html`)</i></p>
+        </div>
+
+        <div class="course-section">
+            <h2>Main Exercises & Projects: Build Real-World Skills</h2>
+            <p>Theory is important, but practical application is where true mastery happens. This section provides a series of hands-on exercises and a significant capstone project to solidify your understanding and build a strong portfolio.</p>
+            <ul>
+                <li><strong>Exercise 1: Dynamic Theming with CSS Variables</strong>
+                    <p>Create a small web application that allows users to switch between light and dark themes using only CSS Custom Properties. Implement a color palette system that's easy to update.</p>
+                </li>
+                <li><strong>Exercise 2: Responsive Magazine Layout with CSS Grid</strong>
+                    <p>Design and implement a complex, fully responsive magazine-style layout using CSS Grid. This will involve nested grids, named areas, and adapting the layout for various screen sizes.</p>
+                </li>
+                <li><strong>Exercise 3: Interactive Component Library with SASS Mixins</strong>
+                    <p>Develop a set of reusable UI components (e.g., buttons, cards, modals) using SASS mixins and functions to manage their styles efficiently. Focus on creating variations with different modifiers.</p>
+                </li>
+                <li><strong>Exercise 4: Performance Audit & Optimization</strong>
+                    <p>Take an existing, unoptimized web page (provided or one of your own) and apply advanced CSS performance techniques, including critical CSS extraction, optimizing selectors, and reducing reflows/repaints.</p>
+                </li>
+                <li><strong>Capstone Project: Modern Portfolio Website</strong>
+                    <p>Consolidate all your learning by building a complex, professional-grade web project from scratch. This project must utilize CSS Grid for the main layout, SASS for styling, advanced CSS animations for interactivity, and be fully responsive and accessible. This will be your showcase piece!</p>
+                </li>
+            </ul>
+            <a href="#" class="action-button">Access Exercises</a>
+            <p><i>(Exercises content and starter files to be implemented separately)</i></p>
+        </div>
+
+        <div class="course-section">
+            <h2>What's Next?</h2>
+            <p>Congratulations on completing the Professional Advanced CSS & SASS course! You've gained invaluable skills that will set you apart as a front-end developer. With a strong grasp of advanced CSS, you're now well-equipped to tackle even the most challenging UI designs.</p>
+            <p>Consider exploring topics like JavaScript frameworks (React, Vue, Angular), backend development (Node.js, Python), or specialized areas like WebGL for 3D graphics to further expand your expertise.</p>
+            <p>Keep practicing, keep building, and stay curious!</p>
+        </div>
+
+        <a href="advanced.html" class="back-button">Back to advanced Courses</a>
+    </div>
+</body>
+</html>
+<script>
+     function toggleMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const hamburgerIcon = document.getElementById('hamburger').querySelector('i');
+
+      mobileMenu.classList.toggle('show');
+
+      if (mobileMenu.classList.contains('show')) {
+        hamburgerIcon.classList.remove('fa-bars');
+        hamburgerIcon.classList.add('fa-times');
+      } else {
+        hamburgerIcon.classList.remove('fa-times');
+        hamburgerIcon.classList.add('fa-bars');
+      }
+    }
+
+    // Function for the desktop profile dropdown
+    function toggleProfileMenu() {
+      const dropdown = document.getElementById('profileDropdown');
+      if (window.innerWidth > 768) {
+        dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+      }
+    }
+
+    // Function for the mobile profile submenu
+    function toggleMobileProfileSubmenu() {
+      const submenu = document.querySelector('.mobile-profile-submenu');
+      const toggleButton = document.querySelector('.mobile-profile-toggle');
+
+      if (submenu.style.display === 'flex') {
+        submenu.style.display = 'none';
+        toggleButton.classList.remove('active');
+      } else {
+        submenu.style.display = 'flex';
+        toggleButton.classList.add('active');
+      }
+    }
+
+    // New function for the mobile Learning Path submenu
+    function toggleMobileLearningPathSubmenu() {
+      const submenu = document.querySelector('.mobile-learning-path-submenu');
+      const toggleButton = document.querySelector('.mobile-learning-path-toggle');
+
+      if (submenu.style.display === 'flex') {
+        submenu.style.display = 'none';
+        toggleButton.classList.remove('active');
+      } else {
+        submenu.style.display = 'flex';
+        toggleButton.classList.add('active');
+      }
+    }
+
+    window.addEventListener('click', function (e) {
+      // Close desktop profile dropdown on outside click
+      const profileIcon = document.querySelector('.profile-icon');
+      const dropdown = document.getElementById('profileDropdown');
+      if (window.innerWidth > 768 && !profileIcon.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.style.display = 'none';
+      }
+
+      // Close mobile profile submenu if click is outside
+      const mobileProfileSection = document.querySelector('.mobile-profile-section');
+      const mobileProfileSubmenu = document.querySelector('.mobile-profile-submenu');
+      if (window.innerWidth <= 768 && mobileProfileSubmenu.style.display === 'flex' && !mobileProfileSection.contains(e.target) && !e.target.closest('.mobile-menu')) {
+          mobileProfileSubmenu.style.display = 'none';
+          document.querySelector('.mobile-profile-toggle').classList.remove('active');
+      }
+
+      // Close mobile learning path submenu if click is outside
+      const mobileLearningPathSection = document.querySelector('.mobile-learning-path-section');
+      const mobileLearningPathSubmenu = document.querySelector('.mobile-learning-path-submenu');
+      if (window.innerWidth <= 768 && mobileLearningPathSubmenu.style.display === 'flex' && !mobileLearningPathSection.contains(e.target) && !e.target.closest('.mobile-menu')) {
+          mobileLearningPathSubmenu.style.display = 'none';
+          document.querySelector('.mobile-learning-path-toggle').classList.remove('active');
+      }
+    });
+
+    // Close mobile submenus when mobile menu itself is closed
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenu.addEventListener('transitionend', () => {
+        if (!mobileMenu.classList.contains('show')) {
+            const profileSubmenu = document.querySelector('.mobile-profile-submenu');
+            const profileToggleButton = document.querySelector('.mobile-profile-toggle');
+            if (profileSubmenu) {
+                profileSubmenu.style.display = 'none';
+            }
+            if (profileToggleButton) {
+                profileToggleButton.classList.remove('active');
+            }
+
+            const learningPathSubmenu = document.querySelector('.mobile-learning-path-submenu');
+            const learningPathToggleButton = document.querySelector('.mobile-learning-path-toggle');
+            if (learningPathSubmenu) {
+                learningPathSubmenu.style.display = 'none';
+            }
+            if (learningPathToggleButton) {
+                learningPathToggleButton.classList.remove('active');
+            }
+        }
+    });
+ 
+
+   
+</script>

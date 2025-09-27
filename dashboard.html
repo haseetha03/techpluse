@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Dashboard</title>
+  <style>
+    :root {
+      --primary: lab(38.93% 33.84 -44.68);    /* Blue */
+      --secondary: lab(70.93% 18.14 -31.01);  /* Cyan */
+      --bg: #fff;
+      --text: #000;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      display: flex;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 240px;
+      background: var(--primary);
+      color: #fff;
+      padding: 2rem 1rem;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.5rem;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 0.8rem 1rem;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      background: var(--secondary);
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: #fff;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+
+    .main {
+      flex: 1;
+      padding: 2rem;
+    }
+
+    .section {
+      background: #f4f4f4;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      border-left: 6px solid var(--primary);
+    }
+
+    .section h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .profile-box {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .profile-box img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid var(--secondary);
+    }
+
+    .course, .quiz, .project {
+      background: #fff;
+      padding: 1rem;
+      border: 1px solid var(--secondary);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .course:hover, .quiz:hover, .project:hover {
+      background: var(--primary);
+      color: #fff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .heatmap {
+      display: grid;
+      grid-template-columns: repeat(31, 14px);
+      gap: 5px;
+    }
+
+    .heatmap div {
+      width: 14px;
+      height: 14px;
+      background: #ddd;
+      border-radius: 3px;
+    }
+
+    .heatmap div.active {
+      background: var(--secondary);
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Dashboard</h2>
+    <a href="#">Profile</a>
+    <a href="#">Courses</a>
+    <a href="#">Quizzes</a>
+    <a href="#">Projects</a>
+    <a href="#">Streak</a>
+    <a href="#">Settings</a>
+  </div>
+
+  <div class="main">
+    <div class="section">
+      <h3>👤 Profile Details</h3>
+      <div class="profile-box">
+        <img src="https://i.pravatar.cc/80" alt="Profile">
+        <div>
+          <p><strong>Name:</strong> Mounika K</p>
+          <p><strong>Email:</strong> mounika@example.com</p>
+          <p><strong>Branch:</strong> AIML, Aditya College of Engineering & technology</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>📚 Courses in Progress</h3>
+      <div class="course">JavaScript Essentials</div>
+      <div class="course">Full Stack Development</div>
+      <div class="course">Resume Builder Design</div>
+    </div>
+
+    <div class="section">
+      <h3>🧠 Quizzes</h3>
+      <div class="quiz">HTML/CSS Basics - 85%</div>
+      <div class="quiz">JavaScript DOM Quiz - 90%</div>
+    </div>
+
+    <div class="section">
+      <h3>📁 Uploaded Projects</h3>
+      <div class="project">Resume Builder Web App</div>
+      <div class="project">SmartBin Waste Manager</div>
+    </div>
+
+    <div class="section">
+      <h3>🔥 Heatmap Streak</h3>
+      <div class="heatmap">
+        <div class="active"></div><div class="active"></div><div></div><div class="active"></div>
+        <div></div><div></div><div class="active"></div><div class="active"></div><div class="active"></div><div></div>
+        <div class="active"></div><div class="active"></div><div class="active"></div><div class="active"></div><div></div>
+        <div class="active"></div><div class="active"></div><div></div><div class="active"></div><div class="active"></div>
+        <div class="active"></div><div></div><div></div><div></div><div class="active"></div><div class="active"></div>
+        <div></div><div></div><div class="active"></div><div></div><div class="active"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

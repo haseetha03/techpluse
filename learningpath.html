@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Check Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #bb56e3; /* A vibrant blue */
+            --secondary-color: #de88e3; /* A soft pink/red */
+            --accent-color: #f5ae82; /* A bright yellow for progress/buttons */
+            --text-color: #faf2fb;
+            --bg-light-alpha: rgba(255, 255, 255, 0.15);
+            --bg-dark-alpha: rgba(0, 0, 0, 0.2);
+            --shadow-color: rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Use min-height for better content fitting */
+            margin: 0;
+            padding: 20px; /* Add padding for smaller screens */
+            box-sizing: border-box;
+            overflow: hidden; /* For background animation */
+            position: relative;
+        }
+
+        /* Background animation */
+        .background-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            background: var(--bg-light-alpha);
+            border-radius: 50%;
+            animation: moveShape 15s infinite ease-in-out;
+            opacity: 0;
+        }
+
+        .shape:nth-child(1) {
+            width: 100px; height: 100px;
+            left: 10%; top: 20%;
+            animation-delay: 0s;
+        }
+        .shape:nth-child(2) {
+            width: 150px; height: 150px;
+            left: 80%; top: 50%;
+            animation-delay: 3s;
+        }
+        .shape:nth-child(3) {
+            width: 80px; height: 80px;
+            left: 30%; top: 80%;
+            animation-delay: 6s;
+        }
+        .shape:nth-child(4) {
+            width: 120px; height: 120px;
+            left: 50%; top: 10%;
+            animation-delay: 9s;
+        }
+        .shape:nth-child(5) {
+            width: 90px; height: 90px;
+            left: 5%; top: 60%;
+            animation-delay: 12s;
+        }
+
+        @keyframes moveShape {
+            0% { transform: translate(0, 0) scale(0.5); opacity: 0; }
+            20% { opacity: 0.7; }
+            50% { transform: translate(50px, -50px) scale(1.2); opacity: 0.5; }
+            80% { opacity: 0.7; }
+            100% { transform: translate(0, 0) scale(0.5); opacity: 0; }
+        }
+
+
+        .quiz-container {
+            background: var(--bg-dark-alpha);
+            padding: 30px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 450px; /* Minimized max-width for a more compact card */
+            text-align: center;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 2.2rem; /* Slightly reduced font size for heading */
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .progress-bar {
+            height: 10px; /* Thicker progress bar */
+            background: var(--bg-light-alpha);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 25px 0;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--accent-color);
+            border-radius: 5px;
+            transition: width 0.4s ease-in-out;
+            box-shadow: 0 0 8px var(--accent-color); /* Glow effect */
+        }
+
+        .question-count {
+            font-size: 1rem; /* Slightly reduced font size */
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .question {
+            font-size: 1.3rem; /* Slightly reduced font size for question */
+            margin-bottom: 30px;
+            min-height: 50px; /* Ensure consistent height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: slideInUp 0.5s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Slightly reduced spacing between buttons */
+        }
+
+        .option-btn {
+            display: block;
+            width: 100%;
+            padding: 12px; /* Slightly reduced padding */
+            background: var(--bg-light-alpha);
+            color: var(--text-color);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem; /* Slightly reduced font size */
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: left; /* Align text to left */
+            padding-left: 18px; /* Indent text */
+        }
+
+        .option-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .option-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .option-btn.correct {
+            background: #28a745; /* Green for correct */
+            box-shadow: 0 0 15px rgba(40, 167, 69, 0.6);
+        }
+
+        .option-btn.wrong {
+            background: #dc3545; /* Red for wrong */
+            box-shadow: 0 0 15px rgba(220, 53, 69, 0.6);
+        }
+
+        .result {
+            font-size: 1.3rem; /* Slightly reduced font size */
+            margin-top: 20px;
+            display: none;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .result-btn {
+            padding: 12px 25px; /* Slightly reduced padding */
+            background: var(--accent-color);
+            color: #333; /* Darker text for contrast on yellow button */
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem; /* Slightly reduced font size */
+            font-weight: 700;
+            margin-top: 20px; /* Slightly reduced margin */
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .result-btn:hover {
+            background: #ffc107; /* Slightly lighter yellow */
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            .question {
+                font-size: 1.2rem;
+            }
+            .option-btn {
+                font-size: 0.95rem;
+                padding: 10px;
+            }
+            .quiz-container {
+                padding: 18px;
+                max-width: 90%; /* Allow it to expand more on smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+            .question {
+                font-size: 1rem;
+                min-height: 45px;
+            }
+            .option-btn {
+                font-size: 0.85rem;
+                padding: 8px;
+            }
+            .result {
+                font-size: 1.1rem;
+            }
+            .result-btn {
+                font-size: 0.9rem;
+                padding: 10px 18px;
+            }
+            .quiz-container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="quiz-container">
+        <h1>Knowledge Check</h1>
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+        <p class="question-count">Question 1 of 10</p>
+        <div class="question"></div>
+        <div class="options"></div>
+        <div class="result"></div>
+    </div>
+
+    <script>
+        // Questions Data - Now 10 questions!
+        var quizData = [
+            { q: "What does HTML stand for?", o: ["Hyper Text Markup Language", "High Tech Modern Language", "Home Tool Markup Language", "Hyperlink and Text Markup Language"], a: 0 },
+            { q: "What does CSS stand for?", o: ["Creative Style Sheets", "Cascading Style Sheets", "Computer Style Sheets", "Colorful Style Sheets"], a: 1 },
+            { q: "Which language structures web pages?", o: ["JavaScript", "Python", "HTML", "C++"], a: 2 },
+            { q: "Which is used for web styling?", o: ["HTML", "CSS", "C", "Java"], a: 1 },
+            { q: "Which is a scripting language for web?", o: ["JavaScript", "PHP", "Both A & B", "C++"], a: 2 },
+            { q: "What is the purpose of `localStorage` in JavaScript?", o: ["To store data on a remote server", "To store data in the user's browser with no expiration", "To store data temporarily in RAM", "To store data in a cookie"], a: 1 },
+            { q: "Which HTTP method is used to retrieve data from a server?", o: ["POST", "PUT", "GET", "DELETE"], a: 2 },
+            { q: "What is 'responsive web design'?", o: ["Designing websites that respond to user input", "Designing websites that adapt to different screen sizes", "Designing websites with fast loading times", "Designing websites with interactive animations"], a: 1 },
+            { q: "Which CSS property is used to control the spacing between lines of text?", o: ["letter-spacing", "word-spacing", "line-height", "text-indent"], a: 2 },
+            { q: "What does DOM stand for in web development?", o: ["Document Object Model", "Data Order Module", "Design Oriented Markup", "Dynamic Output Method"], a: 0 }
+        ];
+
+        var questionEl = document.querySelector(".question");
+        var optionsEl = document.querySelector(".options");
+        var progressFill = document.querySelector(".progress-fill");
+        var questionCountEl = document.querySelector(".question-count");
+        var resultEl = document.querySelector(".result");
+
+        var currentQuestionIndex = 0;
+        var score = 0;
+        var selectedOptionButton = null; // To keep track of the currently selected button
+
+        function loadQuestion() {
+            // Reset styles for previous question's buttons
+            if (selectedOptionButton) {
+                selectedOptionButton.classList.remove('correct', 'wrong');
+                selectedOptionButton = null;
+            }
+
+            var data = quizData[currentQuestionIndex];
+            questionEl.textContent = data.q;
+            optionsEl.innerHTML = ""; // Clear previous options
+
+            // Add animation class to question
+            questionEl.style.animation = 'none'; // Reset animation
+            void questionEl.offsetWidth; // Trigger reflow
+            questionEl.style.animation = 'slideInUp 0.5s ease-out';
+
+            data.o.forEach((option, index) => {
+                var btn = document.createElement("button");
+                btn.className = "option-btn";
+                btn.textContent = option;
+                btn.setAttribute("data-index", index);
+                btn.onclick = checkAnswer;
+                optionsEl.appendChild(btn);
+            });
+
+            questionCountEl.textContent = `Question ${currentQuestionIndex + 1} of ${quizData.length}`;
+            updateProgressBar();
+        }
+
+        function updateProgressBar() {
+            progressFill.style.width = ((currentQuestionIndex) / quizData.length) * 100 + "%";
+        }
+
+        function checkAnswer(event) {
+            const clickedButton = event.target;
+            const selected = parseInt(clickedButton.getAttribute("data-index"));
+            const correctAnswerIndex = quizData[currentQuestionIndex].a;
+
+            // Disable all buttons after an answer is selected
+            Array.from(optionsEl.children).forEach(button => {
+                button.onclick = null; // Remove click listener
+                button.style.cursor = 'default';
+            });
+
+            if (selected === correctAnswerIndex) {
+                score++;
+                clickedButton.classList.add('correct');
+            } else {
+                clickedButton.classList.add('wrong');
+                // Highlight the correct answer
+                Array.from(optionsEl.children).forEach(button => {
+                    if (parseInt(button.getAttribute("data-index")) === correctAnswerIndex) {
+                        button.classList.add('correct');
+                    }
+                });
+            }
+
+            selectedOptionButton = clickedButton; // Store the clicked button
+
+            // Move to next question after a short delay
+            setTimeout(() => {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < quizData.length) {
+                    loadQuestion();
+                } else {
+                    showResult();
+                }
+            }, 1000); // 1-second delay to show correct/wrong feedback
+        }
+
+        function showResult() {
+    questionEl.style.display = "none";
+    optionsEl.style.display = "none";
+    questionCountEl.style.display = "none";
+    progressFill.style.width = "100%";
+    resultEl.style.display = "block";
+
+    let level;
+    let message;
+    let courseLink;
+
+    if (score <= 4) {
+        level = "Beginner";
+        message = "You're just starting out. Let's build the basics!";
+        courseLink = "beginner.html";
+    } else if (score <= 7) {
+        level = "Intermediate";
+        message = "You're doing well! Time to level up your skills.";
+        courseLink = "intermediate_courses.html";
+    } else {
+        level = "Advanced";
+        message = "Excellent work! You're ready for advanced challenges.";
+        courseLink = "advanced_css.html";
+    }
+
+    resultEl.innerHTML = `
+        <h2>Quiz Complete!</h2>
+        <p>You scored <b>${score}</b> out of <b>${quizData.length}</b>.</p>
+        <p>${message}</p>
+        <p>Eligible Level: <b>${level}</b></p>
+        <a href="${courseLink}">
+            <button class="result-btn highlight-btn">Start ${level} Course</button>
+        </a>
+    `;
+}
+
+
+        // Initial load
+        loadQuestion();
+    </script>
+</body>
+</html>

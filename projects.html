@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Pulse - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #1f1b2e; 
+            color: #f0f0f0; 
+            overflow-x: hidden; 
+            position: relative;
+            min-height: 100vh; 
+            font-family: 'nunito', sans-serif;
+        }
+
+        body::before, body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: -1;
+            pointer-events: none; 
+        }
+
+        body::before {
+            background-color: lab(70.93% 18.14 -31.01);
+            background-size: 300% 300%;
+            animation: backgroundGradientShift 25s ease infinite alternate; 
+            opacity: 0.9;
+        }
+
+        body::after {
+            background: radial-gradient(circle at 70% 30%, rgba(142, 68, 173, 0.3) 0%, transparent 45%),
+                        radial-gradient(circle at 20% 70%, rgba(0, 206, 201, 0.25) 0%, transparent 40%);
+            background-size: 220% 220%; 
+            animation: backgroundPulseScale 30s ease-in-out infinite, backgroundFloat 40s ease-in-out infinite alternate; 
+            opacity: 0.8;
+            filter: blur(10px); 
+        }
+
+        @keyframes backgroundGradientShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        @keyframes backgroundPulseScale {
+            0% { background-size: 220% 220%; opacity: 0.8; }
+            50% { background-size: 250% 250%; opacity: 1; }
+            100% { background-size: 220% 220%; opacity: 0.8; }
+        }
+
+        @keyframes backgroundFloat {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(10vw, 5vh); }
+            50% { transform: translate(0, 10vh); }
+            75% { transform: translate(-10vw, 5vh); }
+            100% { transform: translate(0, 0); }
+        }
+
+
+        a { text-decoration: none; color: inherit; }
+
+        .navbar {
+            background:white;
+            color:lab(38.93% 33.84 -44.68);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: wrap;
+        }
+
+        .profile-menu {
+            position: relative;
+        }
+
+        .profile-icon {
+            font-size: 28px;
+            color:lab(38.93% 33.84 -44.68);
+            cursor: pointer;
+            margin-left: 15px;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: none;
+            flex-direction: column;
+            min-width: 180px;
+            z-index: 101;
+        }
+
+        .dropdown a {
+            padding: 10px 15px;
+            color:lab(38.93% 33.84 -44.68);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #f0e0ff;
+        }
+        .dropdown a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown a:hover {
+            background-color: lab(70.93% 18.14 -31.01);
+        }
+
+        .nav-links .dropdown-container {
+            position: relative;
+            font-size: 20px;
+            top:-3px;
+        }
+
+        .nav-links .dropdown-container .dropdown {
+            position: absolute; 
+            top: 100%; 
+            left: 0; 
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: none; 
+            flex-direction: column;
+            min-width: 180px;
+            z-index: 101;
+            padding: 5px 0; 
+        }
+
+        .nav-links .dropdown-container:hover .dropdown {
+            display: flex; 
+        }
+
+        .nav-links .dropdown-container .dropdown a {
+            padding: 10px 15px;
+            color: #be3af2;
+            font-weight: 500;
+            border-bottom: 1px solid #f0e0ff;
+            white-space: nowrap; /* Prevent text wrap */
+        }
+
+        .nav-links .dropdown-container .dropdown a:last-child {
+            border-bottom: none;
+        }
+
+        .nav-links .dropdown-container .dropdown a:hover {
+            background-color: #f5eaff;
+        }
+
+        .logo-text { 
+            font-size: 20px; 
+            font-weight: 700; 
+            color: lab(38.93% 33.84 -44.68); 
+            margin-left: -130px; 
+        }
+
+        .nav-links {
+             display: flex; 
+             gap: 20px; 
+        }
+   
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            position: relative;
+            font-size: 16px;
+            font-weight: 700;
+            color: lab(38.93% 33.84 -44.68);
+            text-decoration: none;
+        }
+        .nav-links a:not(.no-underline)::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            height: 2px;
+            width: 0;
+            background-color:lab(38.93% 33.84 -44.68);
+            transition: width 0.3s ease-in-out;
+        }
+
+        .nav-links a:not(.no-underline):hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            background-color: transparent;
+        }
+
+        .nav-actions { 
+            display: none; 
+        }
+
+        .hamburger { 
+            display: none; 
+            font-size: 28px; 
+            cursor: pointer; 
+            color:lab(38.93% 33.84 -44.68); 
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+            background:#7025a5 ;
+            padding: 20px 30px;
+            width: 70%;
+            position: fixed;
+            top: 65px;
+            left: 0;
+            right: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 99;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease-out;
+        }
+
+        .mobile-menu.show {
+            display: flex;
+            transform: translateY(0);
+        }
+
+        .mobile-menu a {
+            color: #ffffff;
+            font-weight: 600;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(126, 58, 242, 0.1);
+        }
+        .mobile-menu a:hover{
+            color: #ffffff;
+            height: 40px;
+            background-color: #c5b1f1;
+            border-radius: 5px;
+            padding-top: 10px;
+            padding-left: 12px;
+
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu > a { 
+            border-bottom: none; 
+         }
+
+    
+        .mobile-profile-toggle {
+            color: white;
+            font-weight: 600;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(126, 58, 242, 0.1);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mobile-profile-toggle i {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-profile-toggle.active i {
+            transform: rotate(90deg);
+        }
+
+        .mobile-profile-submenu {
+            display: none; 
+            flex-direction: column;
+            padding-left: 20px; 
+            background:lab(70.93% 18.14 -31.01); 
+            border-radius: 5px;
+            margin-top: 10px; 
+            padding-top: 10px;
+            padding-bottom: 10px;
+            gap:10px;
+            background-color: #fcf6fe;
+        }
+        .mobile-profile-submenu a:hover{
+            color:lab(38.93% 33.84 -44.68);
+        }
+        .mobile-profile-submenu a {
+            border-bottom: none; 
+            padding: 5px 0;
+            color: lab(38.93% 33.84 -44.68); 
+            font-weight: 500;
+
+        }
+        .mobile-profile-submenu a:hover {
+            background-color: lab(70.93% 18.14 -31.01); 
+            text-decoration: none;
+
+        }
+
+
+        .mobile-menu .mobile-nav-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .mobile-menu .mobile-nav-buttons a {
+            padding: 10px 15px;
+            text-align: center;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            border-bottom: none;
+            background: linear-gradient(135deg, lab(70.93% 18.14 -31.01), #e66400);
+        }
+
+    
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0; 
+                transform: translateX(-30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0); 
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-actions { display: none; }
+            .profile-menu { display: none; } 
+            .hamburger { display: block; order: 2; }
+            .logo-text { order: 1; }
+            .navbar { justify-content: space-between; }
+                
+            .hero { flex-direction: column; text-align: center; }
+            .hero-left h1 { font-size: 2.2rem; }
+            .hero-right { max-width: 100%; }
+            video { margin: 20px auto 0; margin-left: 0; 
+        }
+                
+        .mobile-menu .mobile-nav-buttons {
+             display: none;
+        }
+
+      
+      .mobile-learning-path-toggle {
+        color: var(--text-color);
+        font-weight: 600;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(126, 58, 242, 0.1);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .mobile-learning-path-toggle i {
+        transition: transform 0.3s ease-in-out;
+      }
+      .mobile-learning-path-toggle.active i {
+        transform: rotate(90deg);
+      }
+      .mobile-learning-path-submenu {
+        display: none; 
+        flex-direction: column;
+        padding-left: 20px;
+        background: rgba(240, 231, 255, 0.5);
+        border-radius: 5px;
+        margin-top: -10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        gap: 10px;
+        background-color: #fcf6fe;
+      }
+      .mobile-learning-path-submenu a {
+        border-bottom: none;
+        padding: 5px 0;
+        color: var(--main-color);
+        font-weight: 500;
+      }
+      .mobile-learning-path-submenu a:hover {
+        background-color: var(--main-color-50);
+        text-decoration: none;
+      }
+    }
+ 
+
+
+
+        .hero {
+            padding: 60px 30px 20px;
+            text-align: center;
+            position: relative; 
+            z-index: 1; 
+        }
+
+        .hero h1 {
+            font-size: 3rem; 
+            background:lab(29.34% 26.76 -35.73);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 25px;
+            margin-top:0px;
+            
+        }
+
+        .hero p {
+            font-size: 1.1rem; 
+            color: white;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+
+        .search-upload {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px; 
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .search-upload input[type="text"] {
+            padding: 12px; 
+            border-radius: 8px; 
+            border: 1px solid rgba(255,255,255,0.2); 
+            width: 300px; 
+            background: WHITE; 
+            color: GREY;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.3); 
+            transition: all 0.3s ease;
+        }
+
+        .search-upload input[type="text"]:focus {
+            outline: none;
+            border-color: #a29bfe;
+            box-shadow: 0 0 10px rgba(162, 155, 254, 0.5), inset 0 2px 5px rgba(0,0,0,0.5) /* Focus glow and inner shadow */
+        }
+
+        .upload-btn,
+        .upload-btn1 {
+            padding: 12px 20px; 
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px lab(70.93% 18.14 -31.01);
+        }
+
+        .upload-btn:hover,
+        .upload-btn1:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+        }
+
+        .upload-btn {
+            background-color: #11037a70;
+            color: #fff;
+        }
+
+        .upload-btn1 {
+            background: linear-gradient(TO RIGHT, lab(64.09% 34.65 -54.97), lab(38.93% 33.84 -44.68)); 
+            color: white;
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px; 
+            flex-wrap: wrap;
+            margin-top: 30px;
+            padding: 0 20px;
+        }
+
+        .category-tabs button {
+            padding: 10px 22px; 
+            border: none;
+            border-radius: 20px;
+            background-color: lab(70.55% 15.99 -27.23); 
+            color: rgb(250, 248, 248); 
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .category-tabs button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            color: white;
+            background: linear-gradient(TO RIGHT, lab(64.09% 34.65 -54.97), lab(38.93% 33.84 -44.68)); 
+            color: #f1d5fd;
+            font-weight: bold;
+        }
+
+        .category-tabs button.active {
+            background: linear-gradient(TO RIGHT, lab(64.09% 34.65 -54.97), lab(38.93% 33.84 -44.68)); 
+            color: white;
+            font-weight: bold;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.4);
+        }
+
+
+        .featured-projects,
+        .all-projects {
+            margin: 50px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .featured-projects h2,
+        .all-projects h2 {
+            color: white; 
+            font-size: 1.8rem; 
+            text-align: center;
+            margin-bottom: 30px;
+           
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px; 
+            margin-top: 20px;
+        }
+
+        
+        .project-card {
+            background-color: lab(38.93% 33.84 -44.68); 
+            color: #e0c8ff;
+            border-radius: 18px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 0px rgba(142, 68, 173, 0);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.5s ease; 
+            animation: fadeInSlideUp 0.6s ease-out forwards;
+            will-change: transform, box-shadow, filter; 
+            position: relative; 
+        }
+
+        .project-grid .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-grid .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-grid .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-grid .project-card:nth-child(4) { animation-delay: 0.4s; }
+        .project-grid .project-card:nth-child(5) { animation-delay: 0.5s; }
+        .project-grid .project-card:nth-child(6) { animation-delay: 0.6s; }
+        .project-grid .project-card:nth-child(7) { animation-delay: 0.7s; }
+        .project-grid .project-card:nth-child(8) { animation-delay: 0.8s; }
+
+
+        
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.04) rotateX(3deg) rotateZ(-0.5deg); 
+            box-shadow: 0 0px 20px black, 0 0 30px rgba(142, 68, 173, 0.8); 
+            
+            z-index: 10;
+            position: relative;
+            top: -15px;
+            
+        }
+
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .project-image-placeholder {
+            width: 100%;
+            height: 180px;
+            background-color:black ; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+         .heart-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: white;
+            padding: 8px;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            cursor: pointer;
+            font-size: 18px;
+            color: red;
+        }
+
+        .project-card .badge {
+            background: orange;
+            padding: 6px 12px; 
+            border-radius: 0 0 15px 0;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: white;
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3); 
+        }
+
+        .project-content {
+            padding: 15px 20px; 
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .project-category {
+            background-color: rgba(255, 255, 255, 0.15); 
+            color: #edd3f7;
+            padding: 4px 10px; 
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            align-self: flex-start;
+        }
+
+        .project-title {
+            font-size: 1.4rem; 
+            font-weight: bold;
+            color: white; 
+            margin-top: 0;
+            margin-bottom: 8px;
+            
+        }
+
+        .project-author {
+            font-size: 0.9rem; 
+            color: rgb(240, 220, 184);
+            margin-bottom: 12px;
+        }
+
+        .project-description {
+            font-size: 0.95rem; 
+            color: #faf6f6;
+            line-height: 1.5; 
+            margin-bottom: 15px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; 
+            margin-top: auto;
+        }
+
+        .project-tags .tag {
+            background-color:  lab(48.52% 29.9 -41.03);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px; 
+            font-size: 0.8rem;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .project-card-footer-extended {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15); 
+            background-color: rgba(0, 0, 0, 0.15); 
+        }
+
+        .project-card-footer-extended .stats {
+            display: flex;
+            gap: 18px;
+            color: #e0c8ff; 
+        }
+
+        .project-card-footer-extended .rating {
+            font-size: 1rem; 
+            color: #ffd700;
+            display: flex;
+            align-items: center;
+            gap: 5px; 
+        }
+
+        .view-project-btn {
+            background: linear-gradient(TO RIGHT, lab(64.09% 34.65 -54.97), lab(64.62% 31.89 -51.38)); 
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .view-project-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4), 0 0 15px lab(64.09% 34.65 -54.97); 
+        }
+
+        .download-icon {
+            background: none;
+            border: none;
+            color: #e0c8ff; 
+            cursor: pointer;
+            padding: 8px;  
+            border-radius: 50%; 
+            transition: all 0.3s ease;
+        }
+        .download-icon:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1); 
+            color: white;
+        }
+        .no-projects-message {
+            text-align: center;
+            padding: 40px;
+            color: #ccc;
+            font-size: 1.3rem; 
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px; 
+            background-color: rgba(60, 49, 106, 0.5); 
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            margin-top: 30px;
+        }
+
+        .no-projects-message svg {
+            width: 60px; 
+            height: 60px;
+            color: #8e44ad;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            nav {
+                margin-top: 15px;
+            }
+            .auth-buttons {
+                margin-top: 15px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .brand-title {
+                font-size: 1.2rem;
+            }
+            nav a {
+                margin: 0 0.5rem;
+            }
+            .search-upload input[type="text"] {
+                width: 100%;
+            }
+            .search-upload {
+                flex-direction: column;
+            }
+            .category-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            .category-tabs button {
+                width: 80%;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 0.9rem;
+            }
+        }
+        .hearts:hover {
+            background-color: red;
+        }
+
+        footer {
+            background: lab(38.93% 33.84 -44.68);
+            color:lab(70.93% 18.14 -31.01);
+            padding: 30px 10%;
+            text-align: center;
+        }
+
+    footer p { margin-bottom: 10px; }
+
+    footer a {
+      color: lab(70.93% 18.14 -31.01);
+      margin: 0 10px;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+
+    footer a:hover { 
+        color: #000; 
+    }
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+    <div class="logoimg"><img src="Brain Meets Circuitry Icon.png" width="50"></div>
+    <!--<div class="logo-text">Tech Pulse</div>-->
+
+    <div class="nav-links">
+      <a href="tech3.html">Home</a>
+      <div class="dropdown-container">
+        <a href="#" class="no-underline">Learning Path</a>
+        <div class="dropdown">
+          <a href="explore_courses.html">Explore Courses</a>
+          <a href="knowledgeenter.html">Knowledge Check</a>
+        </div>
+      </div>
+     
+      <a href="projects.html" >Projects</a>
+      <a href="internships.html">Internships</a>
+       <a href="teamconnect.html">Team Connect</a>
+       <a href="resume.html">Resume Builder</a>
+    </div>
+
+        <div class="profile-menu">
+      <i class="fas fa-user-circle profile-icon" onclick="toggleProfileMenu()"></i>
+      <div class="dropdown" id="profileDropdown">
+        <a href="todo.html">To-Do Tracker</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="Remainders.html">Reminders</a>
+        <a href="signup1.html">Sign Up</a>
+        <a href="login.html">Log In</a>
+        <a href="tech3.html">Logout</a>
+      </div>
+    </div>
+
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+  </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+    <a href="tech3.html">Home</a>
+    <div class="mobile-learning-path-section">
+      <div class="mobile-learning-path-toggle" onclick="toggleMobileLearningPathSubmenu()">
+        Learning Path <i class="fas fa-chevron-right"></i>
+      </div>
+      <div class="mobile-learning-path-submenu">
+        <a href="explore_courses.html">Explore Courses</a>
+        <a href="knowledgeenter.html">Knowledge Check</a>
+      </div>
+    </div>
+    <a href="projects.html">Projects</a>
+    <a href="internships.html">Internships</a>
+    <a href="teamconnect.html">Team Connect</a>
+    <a href="resume.html">Resume Builder</a>
+
+    <div class="mobile-profile-section">
+      <div class="mobile-profile-toggle" onclick="toggleMobileProfileSubmenu()">
+        Profile <i class="fas fa-chevron-right"></i>
+      </div>
+      <div class="mobile-profile-submenu">
+        <a href="todo.html">To-Do Tracker</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="Remainders.html">Reminders</a>
+        <a href="signup1.html">Sign Up</a>
+        <a href="login.html">Log In</a>
+        <a href="tech3.html">Logout</a>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="hero">
+        <!-- <button class="upload-btn">🚀 Project Showcase</button> -->
+        <h1>Amazing Projects by Our Community</h1>
+        <p>Discover incredible projects built by learners like you. Get inspired, learn from others, and share your own creations.</p>
+
+        <div class="search-upload">
+            <input type="text" placeholder="Search projects, technologies, or authors...">
+            <button class="upload-btn1"><a style = "text-decoration:none; color:white" href = "./final_upload.html">+ Upload Project</a></button>
+        </div>
+
+        <div class="category-tabs">
+            <button class="active" data-category="all">All</button>
+            <button data-category="web development">Web Development</button>
+            <button data-category="mobile development">Mobile Development</button>
+            <button data-category="ai/ml">AI/ML</button>
+            <button data-category="blockchain">Blockchain</button>
+            <button data-category="iot">IoT</button>
+            <button data-category="data science">Data Science</button>
+        </div>
+    </div>
+
+    <div class="featured-projects">
+        
+        <h2> <i style = "color:orange;" class="fa-solid fa-star"></i> Featured Projects</h2>
+        <div class="project-grid" id="featured-projects-grid">
+            <div class="project-card" data-category="web development">
+                <div class="project-image-placeholder">
+                    <video src="https://res.cloudinary.com/dm7wamfnf/video/upload/v1751184610/video_demo_1_1_abxftn.mp4" autoplay muted loop playsinline style="width: 100%; height: 180px; object-fit: cover; display: block;"></video>
+                </div>
+                <div class="badge">Featured</div>
+                <div class="project-content">
+                    <p class="project-category">Web Development </p>
+                    <div class = "hearts">
+                        <i style = "display:inline-block; color:white; position:absolute;right:30px;top:20px;" class="fa-regular fa-heart"></i>
+                    </div>
+                    <h3 class="project-title">HouseHunt-Find-Your-Perfect-Rental-Home</h3>
+                    <p class="project-author">By Tanuja Devi</p>
+                    <p class="project-description">A modern house hunt website offering real-time listings, smart search filters, and insightful tools to find the perfect home.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">Java Script</span>
+                        </div>
+                </div>
+                <div class="project-card-footer-extended">
+                    <div class="stats">
+                        <span><i style = "color:rgb(203, 6, 6);" class="fa-solid fa-heart"></i> 89</span>
+                        <span><i style = "color:lab(70.93% 18.14 -31.01)" class="fa-solid fa-download"></i> 23</span>
+                    </div>
+                    <div class="rating"><i style = "color:orange;" class="fa-solid fa-star"></i> 4.8</div>
+                    <div class="actions">
+                        <button class="view-project-btn"><a style = "text-decoration:none; color:white" href="https://github.com/TANUJADEV1DADISETTY/HouseHunt-Find-Your-Perfect-Rental-Home" target="_blank">▷ View Project</a></button>
+                        </div>
+                </div>
+            </div>
+            <div class="project-card" data-category="mobile development">
+                <div class="project-image-placeholder">
+                    <iframe width="758" height="462" src="https://www.youtube.com/embed/1SOySp8QJtk?autoplay=1&mute=1" title="Technology in education: A tool on whose terms" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="badge">Featured</div>
+                <div class="project-content">
+                    <p class="project-category">Mobile Development</p>
+                     <div class = "hearts">
+                        <i style = "display:inline-block; color:white; position:absolute;right:30px;top:20px;" class="fa-regular fa-heart"></i>
+                    </div>
+                    <h3 class="project-title">Mobile Fitness Tracker</h3>
+                    <p class="project-author">By Mounika</p>
+                    <p class="project-description">Cross-platform mobile app for tracking workouts, nutrition, and health metrics with social features.</p>
+                    <div class="project-tags">
+                        <span class="tag">Java</span>
+                        <span class="tag">Andriod SDK</span>
+                        <span class="tag">X code</span>
+                    </div>
+                </div>
+                <div class="project-card-footer-extended">
+                    <div class="stats">
+                        <span><i style = "color:rgb(203, 6, 6);" class="fa-solid fa-heart"></i> 134</span>
+                        <span><i style = "color:lab(70.93% 18.14 -31.01)" class="fa-solid fa-download"></i> 31</span>
+                    </div>
+                    <div class="rating"><i style = "color:orange;" class="fa-solid fa-star"></i> 4.7</div>
+                    <div class="actions">
+                        <button class="view-project-btn">▷ View Project</button>
+                        </div>
+                </div>
+            </div>
+            <div class="project-card" data-category="data science">
+                <div class="project-image-placeholder">
+                    <iframe width="758" height="462" src="https://www.youtube.com/embed/hAP2QF--2Dg?autoplay=1&mute=1" title="Product Explainer Video | UpSend | Best SaaS Explainer Video" 
+                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" 
+                            allowfullscreen> </iframe>
+
+                </div>
+                <div class="badge">Featured</div>
+                <div class="project-content">
+                    <p class="project-category">Data Science</p>
+                     <div class = "hearts">
+                         <i style = "display:inline-block; color:white; position:absolute;right:30px;top:20px;" class="fa-regular fa-heart"></i>
+                    </div>
+                    <h3 class="project-title">Data Visualization Tool</h3>
+                    <p class="project-author">By Sai Divya</p>
+                    <p class="project-description">Interactive data visualization platform with multiple chart types, real-time updates, and export features.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">API's</span>
+                        <span class="tag">SQL</span>
+                    </div>
+                </div>
+                <div class="project-card-footer-extended">
+                    <div class="stats">
+                        <span><i style = "color:rgb(203, 6, 6);" class="fa-solid fa-heart"></i> 34</span>
+                        <span><i style = "color:lab(70.93% 18.14 -31.01)" class="fa-solid fa-download"></i> 09</span>
+                    </div>
+                    <div class="rating"><i style = "color:orange;" class="fa-solid fa-star"></i> 4.5</div>
+                    <div class="actions">
+                        <button class="view-project-btn"><a style = "text-decoration:none; color:white" href="https://github.com/KSriMounika/Freelanc-Finder" target="_blank">▷ View Project</a></button>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="no-projects-message" id="no-featured-projects">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-folder-x" viewBox="0 0 16 16">
+                <path d="M.5 3l.04.87a1.99 1.99 0 0 0-.342 1.311L.5 7.02l.001.253C.051 8.651 1 9.5 2 9.5h8.5a2.5 2.5 0 0 0 2.5-2.5V4.334a2.5 2.5 0 0 0-1.25-2.165L10.5 1H3.812c-.138 0-.27.01-.393.04L.5 3zm-.867 2.88c.345-1.05.959-1.672 1.62-2.12L3.3 1.251A1.99 1.99 0 0 1 5.381 1h5.738A3.5 3.5 0 0 1 14 4.334V7a.5.5 0 0 1-1 0V4.334a2.5 2.5 0 0 0-1.25-2.165L10.5 1H3.812c-.138 0-.27.01-.393.04L.5 3zm-.867 2.88c.345-1.05.959-1.672 1.62-2.12L3.3 1.251A1.99 1.99 0 0 1 5.381 1h5.738A3.5 3.5 0 0 1 14 4.334V7a.5.5 0 0 1-1 0V4.334a2.5 2.5 0 0 0-1.25-2.165L10.5 1H3.812c-.138 0-.27.01-.393.04L.5 3zm-.867 2.88c.345-1.05.959-1.672 1.62-2.12L3.3 1.251A1.99 1.99 0 0 1 5.381 1h5.738A3.5 3.5 0 0 1 14 4.334V7a.5.5 0 0 1-1 0V4.334a2.5 2.5 0 0 0-1.25-2.165L10.5 1H3.812c-.138 0-.27.01-.393.04L.5 3zm-.867 2.88c.345-1.05.959-1.672 1.62-2.12L3.3 1.251A1.99 1.99 0 0 1 5.381 1h5.738A3.5 3.5 0 0 1 14 4.334V7a.5.5 0 0 1-1 0V4.334a2.5 2.5 0 0 0-1.25-2.165L10.5 1H3.812c-.138 0-.27.01-.393.04L.5 3zM15 12.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1 0-1h9a.5.5 0 0 1 .5.5z"/>
+                <path d="M9.596 11.232a.5.5 0 0 0 .808.577l1.96-2.542 1.96 2.542a.5.5 0 0 0 .808-.577l-1.96-2.542 1.96-2.542a.5.5 0 0 0-.808-.577L12 8.243l-1.96-2.542a.5.5 0 0 0-.808.577l1.96 2.542-1.96 2.542z"/>
+            </svg>
+            <p>No featured projects found for this category.</p>
+        </div>
+    </div>
+
+    <div class="all-projects">
+        <h2>All Projects</h2>
+        <div class="project-grid" id="all-projects-grid">
+            <div class="project-card" data-category="iot">
+                <div class="project-image-placeholder">
+                    <iframe width="758" height="462" src="https://www.youtube.com/embed/sQ22pm-xvrE?autoplay=1&mute=1" title="Product Explainer Video | UpSend | Best SaaS Explainer Video" 
+                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" 
+                            allowfullscreen> </iframe>
+
+                </div>
+                <div class="project-content">
+                    <p class="project-category">IoT</p>
+                     <div class = "hearts">
+                        <i style = "display:inline-block; color:white; position:absolute;right:30px;top:20px;" class="fa-regular fa-heart"></i>
+                    </div>
+                    <h3 class="project-title">IoT Smart Home System</h3>
+                    <p class="project-author">By Saraswati</p>
+                    <p class="project-description">An integrated smart home solution connecting various devices for automation and monitoring.</p>
+                    <div class="project-tags">
+                        <span class="tag">Sensors</span>
+                        <span class="tag">Actuators</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+                <div class="project-card-footer-extended">
+                    <div class="stats">
+                        <span><i style = "color:rgb(203, 6, 6);" class="fa-solid fa-heart"></i> 89</span>
+                        <span><i style = "color:lab(70.93% 18.14 -31.01)" class="fa-solid fa-download"></i> 15</span>
+                    </div>
+                    <div class="rating"><i style = "color:orange;" class="fa-solid fa-star"></i> 4.2</div>
+                    <div class="actions">
+                        <button class="view-project-btn"><a style = "text-decoration:none; color:white" href="https://github.com/TANUJADEV1DADISETTY/HouseHunt-Find-Your-Perfect-Rental-Home" target="_blank">▷ View Project</a></button>
+                        </div>
+                </div>
+            </div>
+            <div class="project-card" data-category="blockchain">
+                <div class="project-image-placeholder">
+                    <iframe width="1022" height="575" src="https://www.youtube.com/embed/y4axD7B2XfM?autoplay=1&mute=1" title="Advanced Animation || Explainer Video for Crypto Exchanges || ETERNA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="project-content">
+                    <p class="project-category">Blockchain</p>
+                     <div class = "hearts">
+                        <i style = "display:inline-block; color:white; position:absolute;right:30px;top:20px;" class="fa-regular fa-heart"></i>
+                    </div>
+                    <h3 class="project-title">Secure Blockchain Voting</h3>
+                    <p class="project-author">By Tulasi</p>
+                    <p class="project-description">A decentralized and transparent voting system built on blockchain technology for enhanced security.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">Java Script</span>
+                    </div>
+                </div>
+                <div class="project-card-footer-extended">
+                    <div class="stats">
+                        <span><i style = "color:rgb(203, 6, 6);" class="fa-solid fa-heart"></i> 110</span>
+                        <span><i style = "color:lab(70.93% 18.14 -31.01)" class="fa-solid fa-download"></i> 28</span>
+                    </div>
+                    <div class="rating"><i style = "color:orange;" class="fa-solid fa-star"></i> 4.6</div>
+                    <div class="actions">
+                        <button class="view-project-btn"><a style = "text-decoration:none; color:white" href="https://github.com/KSriMounika/Freelanc-Finder" target="_blank">▷ View Project</a></button>
+                        </div>
+                </div>
+            </div>
+            <div class="project-card" data-category="ai/ml">
+                <div class="project-image-placeholder">
+                    <iframe width="1022" height="575" src="https://www.youtube.com/embed/J-FkR8L2X5E?autoplay=1&mute=1" title="Futuristic HUD Sound Design | Blake Sanchez" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="project-content">
+                    <p class="project-category">AI/ML</p>
+                     <div class = "hearts">
+                        <i style = "display:inline-block; color:white; position:absolute;right:30px;top:20px;" class="fa-regular fa-heart"></i>
+                     </div>
+                    <h3 class="project-title">AI Recipe Generator</h3>
+                    <p class="project-author">BY Poojitha</p>
+                    <p class="project-description">Generates unique recipes based on available ingredients and dietary preferences using machine learning.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">TensorFlow</span>
+                        <span class="tag">Streamlit</span>
+                    </div>
+                </div>
+                <div class="project-card-footer-extended">
+                    <div class="stats">
+                        <span><i style = "color:rgb(203, 6, 6);" class="fa-solid fa-heart"></i> 95</span>
+                        <span><i style = "color:lab(70.93% 18.14 -31.01)" class="fa-solid fa-download"></i> 18</span>
+                    </div>
+                    <div class="rating"><i style = "color:orange;" class="fa-solid fa-star"></i> 4.9</div>
+                    <div class="actions">
+                        <button class="view-project-btn"><a style = "text-decoration:none; color:white" href="https://github.com/TANUJADEV1DADISETTY/HouseHunt-Find-Your-Perfect-Rental-Home" target="_blank">▷ View Project</a></button>
+                        </div>
+                </div>
+            </div>
+            <div class="project-card" data-category="web development">
+                <div class="project-image-placeholder">
+                    <video src="https://res.cloudinary.com/dcorq8v4b/video/upload/v1753769947/Untitled_video_-_Made_with_Clipchamp_ff8jdl.mp4" autoplay muted loop playsinline style="width: 100%; height: 180px; object-fit: cover; display: block;"></video>
+                </div>
+                <div class="project-content">
+                    <p class="project-category">Web Development</p>
+                     <div class = "hearts">
+                        <i style = "display:inline-block; color:white; position:absolute;right:30px;top:20px;" class="fa-regular fa-heart"></i>
+                    </div>
+                    <h3 class="project-title">Freelance Finder</h3>
+                    <p class="project-author">By Mounika</p>
+                    <p class="project-description">A fun and engaging browser-based game designed to teach complex science concepts to children.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">CSS</span>
+                    </div>
+                </div>
+                <div class="project-card-footer-extended">
+                    <div class="stats">
+                        <span><i style = "color:rgb(203, 6, 6);" class="fa-solid fa-heart"></i> 160</span>
+                        <span><i style = "color:lab(70.93% 18.14 -31.01)" class="fa-solid fa-download"></i> 45</span>
+                    </div>
+                    <div class="rating"><i style = "color:orange;" class="fa-solid fa-star"></i> 4.7</div>
+                    <div class="actions">
+                        <button class="view-project-btn"><a style = "text-decoration:none; color:white" href="https://github.com/KSriMounika/Freelanc-Finder" target="_blank">▷ View Project</a></button>
+                        </div>
+                </div>
+            </div>
+            <div class="project-card" data-category="ai/ml">
+                <div class="project-image-placeholder">
+                    <iframe width="1022" height="575" src="https://www.youtube.com/embed/8jEYjAorB78?autoplay=1&mute=1" title="Quantum | HUD Infographic V2.0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="project-content">
+                    <p class="project-category">AI/ML</p>
+                    <div class = "hearts">
+                        <i style = "display:inline-block; color:white; position:absolute;right:30px;top:20px;" class="fa-regular fa-heart"></i>
+                    </div>
+                    <h3 class="project-title">Real-time Sentiment Analyzer</h3>
+                    <p class="project-author">By Tanuja Devi</p>
+                    <p class="project-description">Analyzes text input to determine its emotional tone (positive, negative, neutral) using NLP techniques.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">NLTK</span>
+                        <span class="tag">Django</span>
+                    </div>
+                </div>
+                <div class="project-card-footer-extended">
+                    <div class="stats">
+                        <span><i style = "color:rgb(203, 6, 6);" class="fa-solid fa-heart"></i> 78</span>
+                        <span><i style = "color:lab(70.93% 18.14 -31.01)" class="fa-solid fa-download"></i> 10</span>
+                    </div>
+                    <div class="rating"><i style = "color:orange;" class="fa-solid fa-star"></i> 4.3</div>
+                    <div class="actions">
+                        <button class="view-project-btn"><a style = "text-decoration:none; color:white" href="https://github.com/TANUJADEV1DADISETTY/HouseHunt-Find-Your-Perfect-Rental-Home" target="_blank">▷ View Project</a></button>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" data-category="iot">
+                <div class="project-image-placeholder">
+                    <iframe width="1022" height="575" src="https://www.youtube.com/embed/2hyQTKhdWcw?autoplay=1&mute=1" title="Project management, a quick tutorial | monday.com tutorials" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    
+                </div>
+                <div class="project-content">
+                    <p class="project-category">IoT</p>
+                     <div class = "hearts">
+                        <i style = "display:inline-block; color:white; position:absolute;right:30px;top:20px;" class="fa-regular fa-heart"></i>
+                    </div>
+                    <h3 class="project-title">Sustainable Project Monitor</h3>
+                    <p class="project-author">By Poojitha</p>
+                    <p class="project-description">Monitors soil moisture, light, and temperature to optimize watering for eco-friendly gardening.</p>
+                    <div class="project-tags">
+                        <span class="tag">Actuators</span>
+                        <span class="tag">Sensors</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+                <div class="project-card-footer-extended">
+                    <div class="stats">
+                        <span><i style = "color:rgb(203, 6, 6);" class="fa-solid fa-heart"></i> 105</span>
+                        <span><i style = "color:lab(70.93% 18.14 -31.01)" class="fa-solid fa-download"></i> 20</span>
+                    </div>
+                    <div class="rating"><i style = "color:orange;" class="fa-solid fa-star"></i> 4.8</div>
+                    <div class="actions">
+                        <button class="view-project-btn"><a style = "text-decoration:none; color:white" href="https://github.com/TANUJADEV1DADISETTY/HouseHunt-Find-Your-Perfect-Rental-Home" target="_blank">▷ View Project</a></button>
+                        <button class="download-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-2.5a.5.5 0 0 1 1 0v2.5A1.5 1.5 0 0 1 14.5 14h-13A1.5 1.5 0 0 1 0 12.5v-2.5a.5.5 0 0 1 .5-.5z"/>
+                                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="no-projects-message" id="no-all-projects">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-folder-x" viewBox="0 0 16 16"> -->
+                <!-- <path d="M.5 3l.04.87a1.99 1.99 0 0 0-.342 1.311L.5 7.02l.001.253C.051 8.651 1 9.5 2 9.5h8.5a2.5 2.5 0 0 0 2.5-2.5V4.334a2.5 2.5 0 0 0-1.25-2.165L10.5 1H3.812c-.138 0-.27.01-.393.04L.5 3zm-.867 2.88c.345-1.05.959-1.672 1.62-2.12L3.3 1.251A1.99 1.99 0 0 1 5.381 1h5.738A3.5 3.5 0 0 1 14 4.334V7a.5.5 0 0 1-1 0V4.334a2.5 2.5 0 0 0-1.25-2.165L10.5 1H3.812c-.138 0-.27.01-.393.04L.5 3zm-.867 2.88c.345-1.05.959-1.672 1.62-2.12L3.3 1.251A1.99 1.99 0 0 1 5.381 1h5.738A3.5 3.5 0 0 1 14 4.334V7a.5.5 0 0 1-1 0V4.334a2.5 2.5 0 0 0-1.25-2.165L10.5 1H3.812c-.138 0-.27.01-.393.04L.5 3zm-.867 2.88c.345-1.05.959-1.672 1.62-2.12L3.3 1.251A1.99 1.99 0 0 1 5.381 1h5.738A3.5 3.5 0 0 1 14 4.334V7a.5.5 0 0 1-1 0V4.334a2.5 2.5 0 0 0-1.25-2.165L10.5 1H3.812c-.138 0-.27.01-.393.04L.5 3zm-.867 2.88c.345-1.05.959-1.672 1.62-2.12L3.3 1.251A1.99 1.99 0 0 1 5.381 1h5.738A3.5 3.5 0 0 1 14 4.334V7a.5.5 0 0 1-1 0V4.334a2.5 2.5 0 0 0-1.25-2.165L10.5 1H3.812c-.138 0-.27.01-.393.04L.5 3zM15 12.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1 0-1h9a.5.5 0 0 1 .5.5z"/> -->
+                <!-- <path d="M9.596 11.232a.5.5 0 0 0 .808.577l1.96-2.542 1.96 2.542a.5.5 0 0 0 .808-.577l-1.96-2.542 1.96-2.542a.5.5 0 0 0-.808-.577L12 8.243l-1.96-2.542a.5.5 0 0 0-.808.577l1.96 2.542-1.96 2.542z"/> -->
+            <!-- </svg> -->
+             <i class="fas fa-folder-open" style="font-size: 48px; color: white;"></i>
+            <p style = "color:lab(70.93% 18.14 -31.01)">No projects found for this category.</p>
+        </div>
+    </div>
+
+
+      <footer>
+    <p>&copy; 2025 Tech Pulse. All rights reserved.</p>
+    <div>
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+    </div>
+  </footer>
+
+    <script>
+
+        function toggleMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburgerIcon = document.getElementById('hamburger').querySelector('i');
+
+            mobileMenu.classList.toggle('show');
+
+            if (mobileMenu.classList.contains('show')) {
+                hamburgerIcon.classList.remove('fa-bars');
+                hamburgerIcon.classList.add('fa-times');
+            } 
+            else 
+            {
+                hamburgerIcon.classList.remove('fa-times');
+                hamburgerIcon.classList.add('fa-bars');
+            }
+        
+        }
+
+        function toggleProfileMenu() {
+            const dropdown = document.getElementById('profileDropdown');
+            if (window.innerWidth > 768) {
+                dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+            }
+        }
+
+        function toggleMobileProfileSubmenu() {
+            const submenu = document.querySelector('.mobile-profile-submenu');
+            const toggleButton = document.querySelector('.mobile-profile-toggle');
+            if (submenu.style.display === 'flex') {
+                submenu.style.display = 'none';
+                toggleButton.classList.remove('active');
+            } 
+            else 
+            {
+                submenu.style.display = 'flex';
+                toggleButton.classList.add('active');
+            }
+        }
+
+        function toggleMobileLearningPathSubmenu() {
+            const submenu = document.querySelector('.mobile-learning-path-submenu');
+            const toggleButton = document.querySelector('.mobile-learning-path-toggle');
+
+            if (submenu.style.display === 'flex') {
+                submenu.style.display = 'none';
+                toggleButton.classList.remove('active');
+            } 
+            else 
+            {
+                submenu.style.display = 'flex';
+                toggleButton.classList.add('active');
+            }
+        }
+
+        window.addEventListener('click', function (e) {
+        const profileIcon = document.querySelector('.profile-icon');
+        const dropdown = document.getElementById('profileDropdown');
+        if (window.innerWidth > 768 && !profileIcon.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.style.display = 'none';
+        }
+
+        const mobileProfileSection = document.querySelector('.mobile-profile-section');
+        const mobileProfileSubmenu = document.querySelector('.mobile-profile-submenu');
+        if (window.innerWidth <= 768 && mobileProfileSubmenu.style.display === 'flex' && !mobileProfileSection.contains(e.target) && !e.target.closest('.mobile-menu')) {
+          mobileProfileSubmenu.style.display = 'none';
+          document.querySelector('.mobile-profile-toggle').classList.remove('active');
+        }
+
+        const mobileLearningPathSection = document.querySelector('.mobile-learning-path-section');
+        const mobileLearningPathSubmenu = document.querySelector('.mobile-learning-path-submenu');
+        if (window.innerWidth <= 768 && mobileLearningPathSubmenu.style.display === 'flex' && !mobileLearningPathSection.contains(e.target) && !e.target.closest('.mobile-menu')) {
+          mobileLearningPathSubmenu.style.display = 'none';
+          document.querySelector('.mobile-learning-path-toggle').classList.remove('active');
+        }
+        });
+
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenu.addEventListener('transitionend', () => {
+        if (!mobileMenu.classList.contains('show')) {
+            const profileSubmenu = document.querySelector('.mobile-profile-submenu');
+            const profileToggleButton = document.querySelector('.mobile-profile-toggle');
+            if (profileSubmenu) {
+                profileSubmenu.style.display = 'none';
+            }
+            if (profileToggleButton) {
+                profileToggleButton.classList.remove('active');
+            }
+
+            const learningPathSubmenu = document.querySelector('.mobile-learning-path-submenu');
+            const learningPathToggleButton = document.querySelector('.mobile-learning-path-toggle');
+            if (learningPathSubmenu) {
+                learningPathSubmenu.style.display = 'none';
+            }
+            if (learningPathToggleButton) {
+                learningPathToggleButton.classList.remove('active');
+            }
+        }
+    });
+
+
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryButtons = document.querySelectorAll('.category-tabs button');
+            const featuredProjectsGrid = document.getElementById('featured-projects-grid');
+            const allProjectsGrid = document.getElementById('all-projects-grid');
+            const noFeaturedProjectsMessage = document.getElementById('no-featured-projects');
+            const noAllProjectsMessage = document.getElementById('no-all-projects');
+
+            function filterProjects(category) {
+                let featuredProjectsCount = 0;
+                featuredProjectsGrid.querySelectorAll('.project-card').forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+                    if (category === 'all' || cardCategory === category) {
+                        card.style.display = ''; 
+                        featuredProjectsCount++;
+                    } else {
+                        card.style.display = 'none'; 
+                    }
+                });
+
+                let allProjectsCount = 0;
+                allProjectsGrid.querySelectorAll('.project-card').forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+                    if (category === 'all' || cardCategory === category) {
+                        card.style.display = ''; 
+                        allProjectsCount++;
+                    } else {
+                        card.style.display = 'none'; 
+                    }
+                });
+
+                
+                noFeaturedProjectsMessage.style.display = featuredProjectsCount === 0 ? 'flex' : 'none';
+                noAllProjectsMessage.style.display = allProjectsCount === 0 ? 'flex' : 'none';
+            }
+
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const selectedCategory = this.getAttribute('data-category');
+                    filterProjects(selectedCategory);
+                });
+            });
+
+            filterProjects('all');
+        });
+    </script>
+</body>
+</html>

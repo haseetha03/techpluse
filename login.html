@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | Tech Pulse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <style>
+    :root {
+      --violet-dark: #bb56e3;
+      --card-light: #f3e7ff;
+      --highlight: #d3a3ff;
+      --white: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #bb56e3;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bubbles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      border-radius: 50%;
+      opacity: 0.15;
+      animation: rise 30s infinite ease-in;
+    }
+
+    /* Multiple bubbles with variation */
+    .bubble:nth-child(1) { left: 5%; width: 40px; height: 40px; background: #f3e7ff; animation-duration: 10s; }
+    .bubble:nth-child(2) { left: 15%; width: 80px; height: 80px; background: #e4c9fa; animation-duration: 12s; }
+    .bubble:nth-child(3) { left: 25%; width: 30px; height: 30px; background: #ffeaff; animation-duration: 9s; }
+    .bubble:nth-child(4) { left: 40%; width: 100px; height: 100px; background: #dfbfff; animation-duration: 14s; }
+    .bubble:nth-child(5) { left: 55%; width: 60px; height: 60px; background: #fad9ff; animation-duration: 11s; }
+    .bubble:nth-child(6) { left: 70%; width: 50px; height: 50px; background: #f3e7ff; animation-duration: 10s; }
+    .bubble:nth-child(7) { left: 80%; width: 90px; height: 90px; background: #f1ccff; animation-duration: 13s; }
+    .bubble:nth-child(8) { left: 90%; width: 35px; height: 35px; background: #e8bfff; animation-duration: 12s; }
+    .bubble:nth-child(9) { left: 30%; width: 75px; height: 75px; background: #fff0ff; animation-duration: 11s; }
+
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateY(-120vh) scale(1.4);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      display: flex;
+      background: var(--card-light);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px var(--shadow);
+      overflow: hidden;
+      z-index: 1;
+      max-width: 900px;
+      width: 90%;
+    }
+
+    .login-form {
+      flex: 1;
+      padding: 40px 35px;
+    }
+
+    .login-form h2 {
+      text-align: center;
+      color: var(--violet-dark);
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--violet-dark);
+      font-weight: 500;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #fff;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .input-group input:focus {
+      box-shadow: 0 0 0 3px var(--highlight);
+      border-color: var(--highlight);
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 12px;
+      background: #bb56e3;
+      color: #FFF;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn-login:hover {
+      background: #c7adde;
+    }
+
+    .login-footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: var(--violet-dark);
+    }
+
+    .login-footer a {
+      color: var(--violet-dark);
+      text-decoration: underline;
+    }
+
+    .image-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      border-bottom-left-radius: 50px;
+      border-top-left-radius: 50px;
+      justify-content: center;
+      padding: 20px;
+      background-color: #FFF;
+    }
+
+    .image-section img {
+      max-width: 100%;
+      max-height: 350px;
+      object-fit: contain;
+      /* border-radius: 12px; */
+      /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        border-radius: 12px;
+      }
+
+      .image-section {
+        display: none;
+      }
+
+      .login-form {
+        padding: 30px 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating bubbles -->
+  <div class="bubbles">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Login Form -->
+    <div class="login-form">
+      <h2>Welcome Back</h2>
+      <form>
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Enter your email" required />
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" required />
+        </div>
+        <button type="submit" class="btn-login">Login</button>
+      </form>
+      <div class="login-footer">
+        Don't have an account? <a href="signup1.html">Sign up</a>
+      </div>
+    </div>
+
+    <!-- Image or Lottie -->
+    <div class="image-section">
+      <img src="https://i.pinimg.com/1200x/56/7e/c6/567ec6e86a4e471e657691b5a7f77355.jpg" alt="Login Illustration" />
+    </div>
+  </div>
+
+
+
+  <script>
+    document.querySelector(".btn-login").addEventListener("click", function(){
+      event.preventDefault();
+
+      let email = document.querySelector("#email").value;
+      let password = document.querySelector("#password").value;
+
+      if(email && password) {
+        let localStorageData = localStorage.getItem("UserDetails");
+
+        if(localStorageData) {
+
+          localStorageData = JSON.parse(localStorageData);
+
+          if(email === localStorageData.email && password === localStorageData.password) {
+            window.location.href = "tech_pulse.html";
+          }
+
+          else {
+            alert("Username/Password is incorrect!!..");
+          }
+
+        }
+
+        else {
+          alert("Hello Buddy!! Invalid Email. Please do sign up");
+        }
+      }
+
+      else {
+        alert("Hello Buddy!! Please enter all the details");
+      }
+
+
+    })
+  </script>
+
+</body>
+</html>

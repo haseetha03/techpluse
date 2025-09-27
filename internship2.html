@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Internship Opportunities | Tech Pulse</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+         :root {
+      --main-color: lab(38.93% 33.84 -44.68);
+      --main-color-50: lab(70.93% 18.14 -31.01);
+      --secondary-color: #e66400;
+      --text-color: white;
+    }
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f5dff8; /* Light, cool background */
+            color: var(--main-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background:var(--main-color-50);
+            color: var(--main-color);
+            padding: 30px;
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Main Content Wrapper */
+        .container {
+            max-width: 1200px; /* Wider container for layout */
+            margin: 0 auto;
+            background: var(--main-color);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        /* Section Description */
+        .intro-text {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 18px;
+            color: white;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+           
+        }
+        .intro-text p {
+            margin-bottom: 15px;
+        }
+
+        /* Domain Filter Tabs */
+        .domain-filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+           
+        }
+
+        .filter-tab {
+            background-color:var(--main-color-50); /* Light blue */
+            color: var(--text-color);
+            padding: 12px 25px;
+            border: 1px solid #f5ccff;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            
+            gap: 8px;
+        }
+
+        
+
+       
+
+        /* Internship Platform Cards */
+        .platform-grid {
+            display: none; /* Hidden by default */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding-top: 20px;
+        }
+        .platform-grid.active {
+            display: grid; /* Show when active */
+        }
+
+        .platform-card {
+            background: #fdfdfd;
+            border: 1px solid #e0e9f0;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Push button to bottom */
+        }
+
+        .platform-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .platform-card h3 {
+            font-size: 24px;
+            color: #8648bc;
+            margin-bottom: 10px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .platform-card p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+            flex-grow: 1; /* Make description take available space */
+        }
+
+        .platform-card .action-link {
+            display: inline-block;
+            background: var(--main-color); /* Green button */
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            align-self: flex-start; /* Align button to start */
+        }
+
+        .platform-card .action-link:hover {
+            background-color:var(--main-color-50);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            header {
+                font-size: 28px;
+                padding: 25px;
+                margin-bottom: 30px;
+            }
+            .container {
+                padding: 20px;
+            }
+            .intro-text {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+            .domain-filters {
+                gap: 10px;
+                margin-bottom: 30px;
+                justify-content: space-around;
+            }
+            .filter-tab {
+                flex: 1 1 45%; /* Two tabs per row */
+                font-size: 14px;
+                padding: 10px 15px;
+                text-align: center;
+                justify-content: center;
+            }
+            .platform-grid {
+                grid-template-columns: 1fr; /* Stack cards on small screens */
+                gap: 25px;
+            }
+            .platform-card h3 {
+                font-size: 20px;
+            }
+            .platform-card p {
+                font-size: 15px;
+            }
+            .platform-card .action-link {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
+
+ html, body {
+  margin: 0;
+  padding: 0;
+}
+
+
+a { text-decoration: none; color: inherit; }
+
+    .navbar {
+      background:white;
+      color:var(--main-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 30px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 10001;
+      flex-wrap: wrap;
+      width: 100%;
+   
+    }
+
+    .profile-menu {
+      position: relative;
+    }
+
+    .profile-icon {
+      font-size: 28px;
+      color:var(--main-color);
+      cursor: pointer;
+      margin-left: 15px;
+    }
+
+    .dropdown { /* Existing dropdown for profile menu */
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      display: none;
+      font-size: 18px;
+      flex-direction: column;
+      min-width: 180px;
+      z-index: 1000;
+    }
+
+    .dropdown a {
+      padding: 10px 15px;
+      color:var(--main-color);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #f0e0ff;
+    }
+
+    .dropdown a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown a:hover {
+      background-color: var(--main-color-50);
+    }
+
+    /* New styles for Learning Path dropdown (desktop) */
+    .nav-links .dropdown-container {
+      position: relative;
+    }
+
+    .nav-links .dropdown-container .dropdown {
+        position: absolute; /* positioned relative to .dropdown-container */
+        top: 100%; /* Below the parent link */
+        left: 0; /* Align with parent link */
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        min-width: 180px;
+        z-index: 101;
+        padding: 5px 0; /* Adjust padding */
+    }
+
+    .nav-links .dropdown-container:hover .dropdown {
+        display: flex; /* Show on hover */
+    }
+
+    .nav-links .dropdown-container .dropdown a {
+        padding: 10px 15px;
+        color: #be3af2;
+        font-weight: 500;
+        border-bottom: 1px solid #f0e0ff;
+        white-space: nowrap; /* Prevent text wrap */
+    }
+
+    .nav-links .dropdown-container .dropdown a:last-child {
+        border-bottom: none;
+    }
+
+    .nav-links .dropdown-container .dropdown a:hover {
+        background-color: #f5eaff;
+    }
+    /* End new styles for Learning Path dropdown */
+
+     .logo-text { font-size: 20px; font-weight: 700; color: var(--main-color); }
+
+    .nav-links { display: flex; gap: 20px; }
+    .nav-links a {
+  position: relative;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--main-color);
+  text-decoration: none;
+}
+
+/* Underline animation ONLY for links without .no-underline */
+.nav-links a:not(.no-underline)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 2px;
+  width: 0;
+  background-color: var(--main-color);
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:not(.no-underline):hover::after {
+  width: 100%;
+}
+
+/* Optional hover background (remove if not needed) */
+.nav-links a:hover {
+  background-color: transparent;
+}
+
+
+   
+   
+
+    .nav-actions { display: none; }
+
+    .hamburger { display: none; font-size: 28px; cursor: pointer; color:var(--main-color); }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 15px;
+      background:lab(38.93% 33.84 -44.68)  ;
+      padding: 20px 30px;
+      width: 50%;
+      position: fixed;
+      top: 65px;
+      left: 0;
+      right: 0;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 1100;
+      font-size: 18px;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease-out;
+    }
+
+    .mobile-menu.show {
+      display: flex;
+      transform: translateY(0);
+    }
+
+    .mobile-menu a {
+      color: var(--text-color);
+      font-weight: 600;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(126, 58, 242, 0.1);
+    }
+    .mobile-menu a:hover{
+      color: #ffffff;
+      height: 40px;
+      background-color: #c5b1f1;
+      border-radius: 5px;
+      padding-top:5px;
+      padding-left: 12px;
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    /* Override for the main navigation links in the mobile menu */
+    .mobile-menu > a { /* Target direct children <a> tags of mobile-menu */
+      border-bottom: none; /* Remove the border-bottom */
+    }
+
+    /* Styles for the new mobile profile dropdown */
+    .mobile-profile-toggle {
+      color: var(--text-color);
+      font-weight: 600;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(126, 58, 242, 0.1);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .mobile-profile-toggle i {
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .mobile-profile-toggle.active i {
+      transform: rotate(90deg); /* Rotate arrow when active */
+    }
+
+    .mobile-profile-submenu {
+      display: none; /* Hidden by default */
+      flex-direction: column;
+      padding-left: 20px; /* Indent submenu items */
+      background:var(--main-color-50); /* Slightly different background for submenu */
+      border-radius: 5px;
+      margin-top: 10px; /* Adjust spacing */
+      padding-top: 10px;
+      padding-bottom: 10px;
+      gap:10px;
+      background-color: #fcf6fe;
+      
+    }
+    .mobile-profile-submenu a:hover{
+      color:var(--main-color);
+    }
+    .mobile-profile-submenu a {
+      border-bottom: none; /* Remove border from last submenu item */
+      padding: 5px 0;
+      color: var(--main-color); /* Color for submenu items */
+      font-weight: 500;
+
+    }
+    .mobile-profile-submenu a:hover {
+       background-color: var(--main-color-50); /* No hover background for simple links */
+       text-decoration: none;
+
+    }
+    /* End of styles for new mobile profile dropdown */
+
+
+    .mobile-menu .mobile-nav-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .mobile-menu .mobile-nav-buttons a {
+      padding: 10px 15px;
+      text-align: center;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+      border-bottom: none;
+       background: linear-gradient(135deg, var(--main-color-50), var(--secondary-color));
+    }
+
+
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-actions { display: none; }
+      .profile-menu { display: none; } /* Hide profile menu on smaller screens */
+      .hamburger { display: block; order: 2; }
+      .logo-text { order: 1; }
+      .navbar { justify-content: space-between; }
+
+      .mobile-menu .mobile-nav-buttons {
+        display: none;
+      }
+
+      /* Styles for mobile learning path dropdown */
+      .mobile-learning-path-toggle {
+        color: var(--text-color);
+        font-weight: 600;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(126, 58, 242, 0.1);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .mobile-learning-path-toggle i {
+        transition: transform 0.3s ease-in-out;
+      }
+      .mobile-learning-path-toggle.active i {
+        transform: rotate(90deg);
+      }
+      .mobile-learning-path-submenu {
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        padding-left: 20px;
+        background: rgba(240, 231, 255, 0.5);
+        border-radius: 5px;
+        margin-top: -10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        gap: 10px;
+        background-color: #fcf6fe;
+      }
+      .mobile-learning-path-submenu a {
+        border-bottom: none;
+        padding: 5px 0;
+        color: var(--main-color);
+        font-weight: 500;
+      }
+      .mobile-learning-path-submenu a:hover {
+        background-color: var(--main-color-50);
+        text-decoration: none;
+      }
+    }
+
+  
+
+
+
+    </style>
+</head>
+<body>
+
+     <div class="navbar">
+    <div class="logoimg"><img src="../Img/Brain Meets Circuitry Icon.png" width="50"></div>
+   
+
+    <div class="nav-links">
+      <a href="tech3.html">Home</a>
+      <div class="dropdown-container">
+        <a href="#" class="no-underline">Learning Path</a>
+        <div class="dropdown">
+          <a href="explore_courses.html">Explore Courses</a>
+          <a href="knowledgeenter.html">Knowledge Check</a>
+        </div>
+      </div>
+     
+      <a href="tech3.html" >Projects</a>
+      <a href="internships.html">Internships</a>
+       <a href="teamconnect.html">Team Connect</a>
+       <a href="resume.html">Resume Builder</a>
+    </div>
+
+    <div class="profile-menu">
+      <i class="fas fa-user-circle profile-icon" onclick="toggleProfileMenu()"></i>
+      <div class="dropdown" id="profileDropdown">
+        <a href="todo.html">To-Do Tracker</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="Remainders.html">Reminders</a>
+        <a href="signup1.html">Sign Up</a>
+        <a href="login.html">Log In</a>
+        <a href="tech3.html">Logout</a>
+      </div>
+    </div>
+
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="tech3.html">Home</a>
+    <div class="mobile-learning-path-section">
+      <div class="mobile-learning-path-toggle" onclick="toggleMobileLearningPathSubmenu()">
+        Learning Path <i class="fas fa-chevron-right"></i>
+      </div>
+      <div class="mobile-learning-path-submenu">
+        <a href="explore_courses.html">Explore Courses</a>
+        <a href="knowledgeenter.html">Knowledge Check</a>
+      </div>
+    </div>
+    <a href="projects.html">Projects</a>
+    <a href="internships.html">Internships</a>
+    <a href="teamconnect.html">Team Connect</a>
+    <a href="resume.html">Resume Builder</a>
+
+    <div class="mobile-profile-section">
+      <div class="mobile-profile-toggle" onclick="toggleMobileProfileSubmenu()">
+        Profile <i class="fas fa-chevron-right"></i>
+      </div>
+      <div class="mobile-profile-submenu">
+        <a href="todo.html">To-Do Tracker</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="Remainders.html">Reminders</a>
+        <a href="signup1.html">Sign Up</a>
+        <a href="login.html">Log In</a>
+        <a href="tech3.html">Logout</a>
+      </div>
+    </div>
+  </div>
+    <header>✨ Internship Opportunities</header>
+
+    <div class="container">
+        <div class="intro-text">
+            <p>Ready to gain real-world experience? Tech Pulse curates the best internship opportunities from leading platforms, categorized by domain, to help you find your perfect match in India's dynamic tech industry.</p>
+            <p>Explore below and click on a domain to see recommended platforms and start your application journey!</p>
+        </div>
+
+        <div class="domain-filters">
+           
+            <button class="filter-tab" data-domain="software-dev"><i class="fas fa-laptop-code"></i> Software Development</button>
+            <button class="filter-tab" data-domain="data-science"><i class="fas fa-chart-line"></i> Data Science & AI</button>
+            <button class="filter-tab" data-domain="web-dev"><i class="fas fa-globe"></i> Web Development</button>
+            <button class="filter-tab" data-domain="ui-ux"><i class="fas fa-palette"></i> UI/UX Design</button>
+            <button class="filter-tab" data-domain="cybersecurity"><i class="fas fa-shield-alt"></i> Cybersecurity</button>
+            <button class="filter-tab" data-domain="cloud"><i class="fas fa-cloud"></i> Cloud Computing</button>
+            <button class="filter-tab" data-domain="devops"><i class="fas fa-cogs"></i> DevOps</button>
+            <button class="filter-tab" data-domain="others"><i class="fas fa-ellipsis-h"></i> Other Tech Roles</button>
+        </div>
+
+        <div id="all-domains" class="platform-grid active">
+            <div class="platform-card">
+                <h3><i class="fab fa-linkedin"></i> LinkedIn</h3>
+                <p>A powerful network for professionals. Find internships, connect with recruiters, and leverage your connections.</p>
+                <a href="https://www.linkedin.com/jobs/internship-jobs-in-india/" target="_blank" class="action-link">Explore on LinkedIn</a>
+            </div>
+            <div class="platform-card">
+                <h3><i class="fas fa-briefcase"></i> Internshala</h3>
+                <p>One of India's most popular platforms specifically for internships across various domains and cities. Offers skill-based filters.</p>
+                <a href="https://internshala.com/internships/work-from-home-internships/" target="_blank" class="action-link">Explore on Internshala</a>
+            </div>
+            <div class="platform-card">
+                <h3><i class="fas fa-search"></i> Indeed</h3>
+                <p>A global job search engine with a vast database of internship opportunities in India, allowing filters by location, industry, etc.</p>
+                <a href="https://in.indeed.com/internship-jobs" target="_blank" class="action-link">Explore on Indeed</a>
+            </div>
+            <div class="platform-card">
+                <h3><i class="fas fa-rocket"></i> Naukri.com</h3>
+                <p>A leading Indian job portal with a dedicated section for internships, including opportunities from top companies.</p>
+                <a href="https://www.naukri.com/internship-jobs" target="_blank" class="action-link">Explore on Naukri</a>
+            </div>
+            <div class="platform-card">
+                <h3><i class="fas fa-users"></i> LetsIntern</h3>
+                <p>Known for its user-friendly interface, offering internships across engineering, management, media, design, and more.</p>
+                <a href="https://www.letsintern.com/" target="_blank" class="action-link">Explore on LetsIntern</a>
+            </div>
+            <div class="platform-card">
+                <h3><i class="fas fa-building"></i> Company Career Pages</h3>
+                <p>Directly check the career sections of major tech companies (e.g., Google Careers, Microsoft India, IBM Careers) for their specific internship programs.</p>
+                <a href="https://careers.google.com/students/" target="_blank" class="action-link">Check Google Careers</a>
+            </div>
+        </div>
+
+        <div id="software-dev" class="platform-grid">
+            <div class="platform-card">
+                <h3><i class="fab fa-google"></i> Google Careers</h3>
+                <p>Offers highly coveted Software Engineering internships. Look for programs like STEP, Google Summer of Code, etc.</p>
+                <a href="https://careers.google.com/students/" target="_blank" class="action-link">Explore Google Tech</a>
+            </div>
+            <div class="platform-card">
+                <h3><i class="fab fa-microsoft"></i> Microsoft India Careers</h3>
+                <p>Various software engineering roles, including those focused on AI, Cloud, and product development.</p>
+                <a href="https://careers.microsoft.com/v2/global/en/students-and-graduates.html" target="_blank" class="action-link">Explore Microsoft Tech</a>
+            </div>
+            <div class="platform-card">
+                <h3><i class="fab fa-ibm"></i> IBM Careers (India)</h3>
+                <p>Internships in various software engineering domains, including AI, Cloud, and Enterprise Solutions.</p>
+                <a href="https://www.ibm.com/in-en/careers/internships" target="_blank" class="action-link">Explore IBM Tech</a>
+            </div>
+            <div class="platform-card">
+                <h3><i class="fas fa-code"></i> Internshala</h3>
+                <p>A vast number of software development internships, including Python, Java, C++, Android, iOS, and more.</p>
+                <a href="https://internshala.com/internships/software-development-internship/" target="_blank" class="action-link">Find Software Dev Internships</a>
+            </div>
+        </div>
+
+        <div id="data-science" class="platform-grid">
+            <div class="platform-card">
+                <h3><i class="fas fa-chart-pie"></i> JPMorganChase & Co.</h3>
+                <p>Offers Data & Analytics programs focusing on data science, machine learning, and quantitative finance.</p>
+                <a href="https://careers.jpmorgan.com/global/en/students/programs/data-analytics-opportunities" target="_blank" class="action-link">Explore JPMC Data</a>
+            </div>
+            <div class="platform-card">
+                <h3><i class="fas fa-brain"></i> 360DigiTMG</h3>
+                <p>Known for data science internship programs with practical experience and certifications. Often includes project work.</p>
+                <a href="https://360digitmg.com/india/data-science-internship" target="_blank" class="action-link">Explore 360DigiTMG</a>
+            </div>
+            <div class="platform-card">
+                <h3><i class="fas fa-cube"></i> Keka (Satsure)</h3>
+                <p>Offers Data Scientist Intern roles, sometimes focusing on geospatial data analysis and remote sensing applications.</p>
+                <a href="https://satsure.keka.com/careers/jobdetails/26859" target="_blank" class="action-link">Explore Keka Data</a>
+            </div>
+            <div class="platform-card">
+                <h3><i class="fas fa-robot"></i> Internshala (AI/ML)</h3>
+                <p>Look for AI, Machine Learning, and Data Analyst internships, often with remote options.</p>
+                <a href="https://internshala.com/internships/artificial-intelligence-internship/" target="_blank" class="action-link">Find AI/ML Internships</a>
+            </div>
+        </div>
+
+        <div id="web-dev" class="platform-grid">
+            <div class="platform-card">
+                <h3><i class="fas fa-laptop-code"></i> Internshala</h3>
+                <p>Comprehensive listings for Front-end, Back-end, and Full-stack web development internships across various technologies.</p>
+                <a href="https://internshala.com/internships/web-development-internship/" target="_blank" class="action-link">Find Web Dev Internships</a>
+            </div>
+            <div class="platform-card">
+                <h3><i class="fas fa-network-wired"></i> Internpe</h3>
+                <p>Focuses on IT & Training, providing web development internships with end-to-end training and projects.</p>
+                <a href="https://internpe.in/web-development-internship/" target="_blank" class="action-link">Explore Internpe Web Dev</a>
+            </div>
+            <div class="platform-card">
+                <h3><i class="fas fa-lightbulb"></i> Startup Job Boards</h3>
+                <p>Web development roles are common in startups. Check platforms like AngelList or company-specific career pages for dynamic opportunities.</p>
+                <a href="https://angel.co/jobs" target="_blank" class="action-link">Check AngelList</a>
+            </div>
+        </div>
+
+        <div id="ui-ux" class="platform-grid">
+            <div class="platform-card">
+                <h3><i class="fas fa-pencil-ruler"></i> Internshala (UI/UX)</h3>
+                <p>Find internships for UI Designer, UX Researcher, Graphic Designer, and Product Designer roles.</p>
+                <a href="https://internshala.com/internships/ui-ux-design-internship/" target="_blank" class="action-link">Find UI/UX Internships</a>
+            </div>
+            <div class="platform-card">
+                <h3><i class="fas fa-sketch"></i> ADPList</h3>
+                <p>While not strictly internships, it's great for finding mentors in UI/UX and sometimes leads to opportunities or project work.</p>
+                <a href="https://adplist.org/" target="_blank" class="action-link">Explore ADPList</a>
+            </div>
+            <div class="platform-card">
+                <h3><i class="fas fa-paint-brush"></i> Design-focused Agencies</h3>
+                <p>Many design agencies offer internships. Look up prominent design firms in India and check their career pages directly.</p>
+                <a href="#" onclick="alert('Search for top design agencies in India and visit their career pages directly!')" class="action-link">Find Design Agencies</a>
+            </div>
+        </div>
+
+        <div id="cybersecurity" class="platform-grid">
+            <div class="platform-card">
+                <h3><i class="fas fa-lock"></i> Internshala (Cybersecurity)</h3>
+                <p>Listings for Ethical Hacking, Cybersecurity Analyst, and Information Security internships.</p>
+                <a href="https://internshala.com/internships/cyber-security-internship/" target="_blank" class="action-link">Find Cybersecurity Internships</a>
+            </div>
+            <div class="platform-card">
+                <h3><i class="fas fa-building"></i> Major Tech Companies</h3>
+                <p>Companies like TCS, Wipro, Infosys, and dedicated security firms often have cybersecurity internship programs.</p>
+                <a href="https://www.tcs.com/careers/students" target="_blank" class="action-link">Check TCS Careers</a>
+            </div>
+        </div>
+
+        <div id="cloud" class="platform-grid">
+            <div class="platform-card">
+                <h3><i class="fab fa-aws"></i> AWS Careers</h3>
+                <p>Explore student programs and internships specifically for Cloud Engineering, Solutions Architecture, and related roles.</p>
+                <a href="https://www.amazon.jobs/en/job_categories/students-and-graduates" target="_blank" class="action-link">Explore AWS Cloud</a>
+            </div>
+            <div class="platform-card">
+                <h3><i class="fab fa-google"></i> Google Cloud Internships</h3>
+                <p>Opportunities for students interested in cloud infrastructure, platform development, and related services.</p>
+                <a href="https://careers.google.com/students/" target="_blank" class="action-link">Explore Google Cloud</a>
+            </div>
+            <div class="platform-card">
+                <h3><i class="fas fa-cloud-upload-alt"></i> Internshala (Cloud)</h3>
+                <p>Listings for Cloud Computing, Azure, AWS, and Google Cloud internships.</p>
+                <a href="https://internshala.com/internships/cloud-computing-internship/" target="_blank" class="action-link">Find Cloud Internships</a>
+            </div>
+        </div>
+
+        <div id="devops" class="platform-grid">
+            <div class="platform-card">
+                <h3><i class="fas fa-tools"></i> Internshala (DevOps)</h3>
+                <p>Find DevOps Engineer, SRE (Site Reliability Engineer), and Automation Engineer internships.</p>
+                <a href="https://internshala.com/internships/devops-internship/" target="_blank" class="action-link">Find DevOps Internships</a>
+            </div>
+            <div class="platform-card">
+                <h3><i class="fab fa-atlassian"></i> Atlassian Careers</h3>
+                <p>Offers internships in various engineering roles, including those related to DevOps and developer experience.</p>
+                <a href="https://www.atlassian.com/company/careers/early-careers" target="_blank" class="action-link">Explore Atlassian</a>
+            </div>
+        </div>
+
+        <div id="others" class="platform-grid">
+            <div class="platform-card">
+                <h3><i class="fas fa-network-wired"></i> Freshersworld</h3>
+                <p>A job portal specifically for freshers, also listing internship opportunities across various tech and non-tech domains.</p>
+                <a href="https://www.freshersworld.com/internship-jobs" target="_blank" class="action-link">Explore Freshersworld</a>
+            </div>
+            <div class="platform-card">
+                <h3><i class="fas fa-university"></i> AICTE National Internship Portal</h3>
+                <p>Government initiative aiming to provide internships across various fields in public and private sectors.</p>
+                <a href="https://internship.aicte-india.org/" target="_blank" class="action-link">Explore AICTE Portal</a>
+            </div>
+            <div class="platform-card">
+                <h3><i class="fas fa-lightbulb"></i> Startup India Portal</h3>
+                <p>Often lists opportunities in innovative startups that might not be on larger job boards, including unique tech roles.</p>
+                <a href="https://www.startupindia.gov.in/content/sih/startupgov/opportunities.html" target="_blank" class="action-link">Explore Startup India</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const platformGrids = document.querySelectorAll('.platform-grid');
+
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and grids
+                filterTabs.forEach(t => t.classList.remove('active'));
+                platformGrids.forEach(grid => grid.classList.remove('active'));
+
+                // Add active class to the clicked tab
+                tab.classList.add('active');
+
+                // Get the data-domain from the clicked tab
+                const selectedDomain = tab.dataset.domain;
+
+                // Show the corresponding platform grid
+                const targetGrid = document.getElementById(selectedDomain);
+                if (targetGrid) {
+                    targetGrid.classList.add('active');
+                }
+            });
+        });
+
+        // Optional: Pre-select a domain or make "All Domains" active on load
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.filter-tab[data-domain="all"]').click();
+        });
+         function toggleMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const hamburgerIcon = document.getElementById('hamburger').querySelector('i');
+
+      mobileMenu.classList.toggle('show');
+
+      if (mobileMenu.classList.contains('show')) {
+        hamburgerIcon.classList.remove('fa-bars');
+        hamburgerIcon.classList.add('fa-times');
+      } else {
+        hamburgerIcon.classList.remove('fa-times');
+        hamburgerIcon.classList.add('fa-bars');
+      }
+    }
+
+    // Function for the desktop profile dropdown
+    function toggleProfileMenu() {
+      const dropdown = document.getElementById('profileDropdown');
+      if (window.innerWidth > 768) {
+        dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+      }
+    }
+
+    // Function for the mobile profile submenu
+    function toggleMobileProfileSubmenu() {
+      const submenu = document.querySelector('.mobile-profile-submenu');
+      const toggleButton = document.querySelector('.mobile-profile-toggle');
+
+      if (submenu.style.display === 'flex') {
+        submenu.style.display = 'none';
+        toggleButton.classList.remove('active');
+      } else {
+        submenu.style.display = 'flex';
+        toggleButton.classList.add('active');
+      }
+    }
+
+    // New function for the mobile Learning Path submenu
+    function toggleMobileLearningPathSubmenu() {
+      const submenu = document.querySelector('.mobile-learning-path-submenu');
+      const toggleButton = document.querySelector('.mobile-learning-path-toggle');
+
+      if (submenu.style.display === 'flex') {
+        submenu.style.display = 'none';
+        toggleButton.classList.remove('active');
+      } else {
+        submenu.style.display = 'flex';
+        toggleButton.classList.add('active');
+      }
+    }
+
+    window.addEventListener('click', function (e) {
+      // Close desktop profile dropdown on outside click
+      const profileIcon = document.querySelector('.profile-icon');
+      const dropdown = document.getElementById('profileDropdown');
+      if (window.innerWidth > 768 && !profileIcon.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.style.display = 'none';
+      }
+
+      // Close mobile profile submenu if click is outside
+      const mobileProfileSection = document.querySelector('.mobile-profile-section');
+      const mobileProfileSubmenu = document.querySelector('.mobile-profile-submenu');
+      if (window.innerWidth <= 768 && mobileProfileSubmenu.style.display === 'flex' && !mobileProfileSection.contains(e.target) && !e.target.closest('.mobile-menu')) {
+          mobileProfileSubmenu.style.display = 'none';
+          document.querySelector('.mobile-profile-toggle').classList.remove('active');
+      }
+
+      // Close mobile learning path submenu if click is outside
+      const mobileLearningPathSection = document.querySelector('.mobile-learning-path-section');
+      const mobileLearningPathSubmenu = document.querySelector('.mobile-learning-path-submenu');
+      if (window.innerWidth <= 768 && mobileLearningPathSubmenu.style.display === 'flex' && !mobileLearningPathSection.contains(e.target) && !e.target.closest('.mobile-menu')) {
+          mobileLearningPathSubmenu.style.display = 'none';
+          document.querySelector('.mobile-learning-path-toggle').classList.remove('active');
+      }
+    });
+
+    // Close mobile submenus when mobile menu itself is closed
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenu.addEventListener('transitionend', () => {
+        if (!mobileMenu.classList.contains('show')) {
+            const profileSubmenu = document.querySelector('.mobile-profile-submenu');
+            const profileToggleButton = document.querySelector('.mobile-profile-toggle');
+            if (profileSubmenu) {
+                profileSubmenu.style.display = 'none';
+            }
+            if (profileToggleButton) {
+                profileToggleButton.classList.remove('active');
+            }
+
+            const learningPathSubmenu = document.querySelector('.mobile-learning-path-submenu');
+            const learningPathToggleButton = document.querySelector('.mobile-learning-path-toggle');
+            if (learningPathSubmenu) {
+                learningPathSubmenu.style.display = 'none';
+            }
+            if (learningPathToggleButton) {
+                learningPathToggleButton.classList.remove('active');
+            }
+        }
+    });
+ 
+    </script>
+
+</body>
+</html>

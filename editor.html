@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stellar Resume Builder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+    <style>
+        
+        body {
+            font-family: 'nunito', sans-serif;
+            background: lab(38.93% 33.84 -44.68); 
+            margin: 0;
+            min-height: 100vh;
+            color: #333; 
+        }
+
+        .homepage-hero {
+            background: lab(38.93% 33.84 -44.68);
+            padding: 80px 20px 60px; 
+            color: #fff;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px; 
+            margin: 0 auto;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem; 
+            font-weight: 700; 
+            margin: 0 0 25px 0;
+            line-height: 1.1;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.2); 
+        }
+
+        .subheadline {
+            font-size: 1.25rem; 
+            margin-bottom: 30px;
+            color: #e8e6e6;
+            line-height: 1.6;
+        }
+
+        .cta-row {
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            gap: 15px; 
+            margin-bottom: 30px;
+        }
+
+        .cta-btn 
+        {
+            background: black;
+            color: #e8e6e6;
+            font-size: 0.95rem;       
+            font-weight: 600;         
+            padding: 12px 14px;       
+            border-radius: 8px;       
+            text-decoration: none;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2); 
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .cta-btn:hover {
+            color: gray;
+            transform: translateY(-4px) scale(1.05); 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        main#resume-section 
+        {
+            margin-top: -30px; 
+            background: lab(70.93% 18.14 -31.01); 
+            border-top-left-radius: 40px; 
+            border-top-right-radius: 40px;
+            box-shadow: 0 -8px 25px rgba(0,0,0,0.08); 
+            padding-top: 60px; 
+        }
+       
+        .resume-preview {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 600px;
+            padding: 0 20px;
+        }
+
+        .resume-paper {
+            background: #fff;
+            width: 750px;
+            min-height: 950px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 50px 60px;
+            margin-bottom: 50px;
+            max-width: 100%;
+            box-sizing: border-box;
+            line-height: 1.6;
+        }
+
+        /* Resume content styling */
+        .resume-paper h2 {
+            font-size: 2.8rem;
+            color: black; /* Darker blue for name */
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .resume-paper h4 {
+            font-size: 1.5rem;
+            color: #424242;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .resume-paper h3 {
+            font-size: 1.8rem;
+            color: black; /* Blue for section titles */
+            border-bottom: 2px solid #e0e0e0; /* Subtle separator */
+            padding-bottom: 5px;
+            margin-top: 35px;
+            margin-bottom: 15px;
+        }
+        .resume-paper p, .resume-paper ul, .resume-paper div { /* Add div to general styling */
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .resume-paper ul {
+            list-style: disc;
+            margin-left: 25px;
+            padding: 0;
+        }
+        .resume-paper li {
+            margin-bottom: 8px;
+        }
+
+        /* Styles for dynamic content */
+        .experience-entry, .project-entry {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .experience-entry:last-child, .project-entry:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .experience-entry h4, .project-entry h4 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: left; /* Override center alignment */
+        }
+        .experience-entry p, .project-entry p {
+            font-size: 1rem;
+            color: #777;
+            margin-bottom: 5px;
+        }
+        .experience-entry ul, .project-entry ul {
+            font-size: 1rem;
+            margin-left: 20px;
+            list-style: circle;
+        }
+
+        .resume-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 0 20px;
+            flex-wrap: wrap; 
+        }
+        a.action-btn 
+        {
+         text-decoration: none;
+         font-size: 1.15rem;
+         font-weight: 660;
+         color: #fff;
+       
+         display: inline-block;
+        padding: 12px 20px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .action-btn 
+        {
+            background: lab(38.93% 33.84 -44.68) ; 
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 14px 35px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .action-btn:hover, .action-btn:focus {
+           
+          
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 700px; /* Increased max-width for more fields */
+            animation: fadeIn 0.3s ease-out;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-sizing: border-box; /* Ensure padding is included */
+        }
+
+        .modal-content h2 {
+            color:black;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .modal-content label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .modal-content input[type="text"],
+        .modal-content input[type="email"],
+        .modal-content input[type="tel"],
+        .modal-content input[type="url"],
+        .modal-content input[type="number"],
+        .modal-content textarea,
+        .modal-content select {
+            width: calc(100% - 22px); /* Account for padding and border */
+            padding: 12px 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .modal-content input[type="text"]:focus,
+        .modal-content input[type="email"]:focus,
+        .modal-content input[type="tel"]:focus,
+        .modal-content input[type="url"]:focus,
+        .modal-content input[type="number"]:focus,
+        .modal-content textarea:focus,
+        .modal-content select:focus {
+            border-color: black;
+            box-shadow: 0 0 0 3px  lab(38.93% 33.84 -44.68) ;
+            outline: none;
+        }
+
+        .form-section {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            background-color: oklab(85.667% 0.02468 -0.0531);
+        }
+
+        .form-section h3 {
+            color:black;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .add-more-btn {
+            background-color: black; 
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+            font-weight: 660;
+            transition: background-color 0.3s ease;
+            
+        }
+
+        .add-more-btn:hover {
+            color: gray;
+        }
+
+      .remove-btn {
+         background-color:black;
+         color: white;
+         padding: 8px 10px;
+         border: none;
+         border-radius: 6px;
+         cursor: pointer;
+         font-size: 0.9rem;
+         font-weight: 660;
+         float: right;
+         clear: both;        
+         display: inline-block;   
+         margin-right: 0;   
+         margin-top: -45px;      
+         transition: background-color 0.3s ease;
+        }
+
+.remove-btn:hover {
+  color: gray;
+}
+
+
+       .modal-container {
+  position: relative; /* Needed for absolute positioning inside */
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+/* Your base modal button style */
+.modal-btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Cancel (×) button in top-right */
+.modal-btn.cancel {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 2.8rem;
+  background: transparent;
+  color:white;
+  padding: 0;
+  line-height: 1;
+  font-weight: bold;
+  border: none;
+}
+
+/* Optional hover effect */
+.modal-btn.cancel:hover {
+
+  transform: scale(1.2);
+}
+
+        .modal-btn.submit {
+            background-color: black;
+            color: #fff;
+        }
+
+        .modal-btn.submit:hover {
+            color: gray;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 900px) {
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            .subheadline {
+                font-size: 1.1rem;
+            }
+            .resume-paper {
+                width: 100%;
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .homepage-hero {
+                padding: 60px 15px 40px;
+            }
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            .subheadline {
+                font-size: 1rem;
+            }
+            .cta-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .cta-btn {
+                width: 100%;
+                padding: 15px 30px;
+            }
+            .resume-paper {
+                padding: 25px 20px;
+            }
+            .resume-paper h2 {
+                font-size: 2rem;
+            }
+            .resume-paper h4 {
+                font-size: 1.2rem;
+            }
+            .resume-paper h3 {
+                font-size: 1.5rem;
+            }
+            .resume-paper p, .resume-paper ul {
+                font-size: 1rem;
+            }
+            .modal-content {
+                padding: 20px;
+            }
+            .modal-content h2 {
+                font-size: 1.6rem;
+                margin-bottom: 20px;
+            }
+            .modal-content input, .modal-content textarea, .modal-content select {
+                padding: 10px;
+                font-size: 1rem;
+                margin-bottom: 15px;
+            }
+            .modal-btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+            .remove-btn {
+                float: none; 
+                display: block;
+                width: 100%;
+                margin-top: 15px;
+            }
+        }
+        .blue-text {
+  color: blue;
+  text-decoration: none; /* This removes the underline */
+  font-weight: 500;
+}
+
+.blue-text:hover {
+  text-decoration: none; /* Ensures no underline on hover */
+  color: darkblue; /* Optional: adds hover effect without underline */
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="homepage-hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Craft Your <span style="color:black;">Perfect Resume</span>, Effortlessly</h1>
+                <p class="subheadline">Build your resume in seconds. Download or print with one click!</p>
+                <div class="cta-row">
+                    <button id="build-resume-btn" class="cta-btn">Fill/Edit My Resume</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <main id="resume-section">
+        <div class="resume-actions">
+           
+
+            <button id="print-resume-btn" class="action-btn">Print Resume</button>
+        
+            <button id="download-pdf-btn" class="action-btn">Download PDF</button>
+           
+            <a href="resume.html" class="action-btn">Back to Templates</a>
+
+        </div>
+        <section class="resume-preview" id="resume-preview">
+        </section>
+    </main>
+
+    <div id="resumeModal" class="modal">
+        <div class="modal-content">
+            <h2>Tell Us About Yourself!</h2>
+            <form id="resume-form">
+                <div class="form-section">
+                    <h3>Personal Information</h3>
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" placeholder="e.g., Jane Doe" required>
+
+                    <label for="desiredRole">Desired Role / Headline:</label>
+                    <input type="text" id="desiredRole" placeholder="e.g., Senior Software Engineer" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" placeholder="e.g., jane.doe@example.com" required>
+
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" placeholder="e.g., +91 98765 43210">
+
+                    <label for="linkedin">LinkedIn Profile URL (Optional):</label>
+                    <input type="url" id="linkedin" placeholder="e.g., https://linkedin.com/in/janedoe">
+
+                    <label for="github">GitHub Profile URL (Optional):</label>
+                    <input type="url" id="github" placeholder="e.g., https://github.com/janedoe">
+                </div>
+
+                <div class="form-section">
+                    <h3>Summary/Objective</h3>
+                    <label for="summary">Brief Professional Summary:</label>
+                    <textarea id="summary" rows="4" placeholder="A concise overview of your skills, experience, and career goals." required></textarea>
+                </div>
+
+                <div class="form-section" id="experience-section">
+                    <h3>Work Experience</h3>
+                    <div class="experience-entry-group">
+                    </div>
+                    <button type="button" class="add-more-btn" data-target="experience">Add Experience</button>
+                </div>
+
+                <div class="form-section" id="projects-section">
+                    <h3>Projects (Optional)</h3>
+                    <div class="project-entry-group">
+                    </div>
+                    <button type="button" class="add-more-btn" data-target="project">Add Project</button>
+                </div>
+
+                <div class="form-section">
+                    <h3>Education</h3>
+                    <label for="gradDegree">Graduation Degree:</label>
+                    <input type="text" id="gradDegree" placeholder="e.g., B.Tech in Computer Science" required>
+                    <label for="gradYear">Graduation Passing Year:</label>
+                    <input type="number" id="gradYear" placeholder="e.g., 2016"  required>
+                    <label for="gradUniversity">Graduation University:</label>
+                    <input type="text" id="gradUniversity" placeholder="e.g., University of Technology" required>
+
+                    <label for="pgDegree">Post-Graduation Degree (Optional):</label>
+                    <input type="text" id="pgDegree" placeholder="e.g., M.Sc in Data Science">
+                    <label for="pgYear">Post-Graduation Passing Year (Optional):</label>
+                    <input type="number" id="pgYear" placeholder="e.g., 2018" >
+                    <label for="pgUniversity">Post-Graduation University (Optional):</label>
+                    <input type="text" id="pgUniversity" placeholder="e.g., National Institute of Science">
+
+                    <label for="twelfthYear">Intermediate/12th Passing Year:</label>
+                    <input type="number" id="twelfthYear" placeholder="e.g., 2012" >
+                    <label for="twelfthCollege">Intermediate/12th College Name:</label>
+                    <input type="text" id="twelfthCollege" placeholder="e.g., XYZ Junior College">
+
+                    <label for="tenthYear">10th Class Passing Year:</label>
+                    <input type="number" id="tenthYear" placeholder="e.g., 2010" >
+                    <label for="tenthSchool">10th Class School Name:</label>
+                    <input type="text" id="tenthSchool" placeholder="e.g., ABC High School">
+                </div>
+
+                <div class="form-section">
+                    <h3>Skills</h3>
+                    <label for="keySkills">Key Skills (comma-separated):</label>
+                    <input type="text" id="keySkills" placeholder="e.g., Project Management, Python, AWS, Communication" required>
+                </div>
+
+                <div class="modal-buttons">
+                     <button type="button" class="modal-btn cancel" id="cancelModalBtn">&times;</button>
+                    <button type="submit" class="modal-btn submit">Generate Resume</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        const templates = {
+           
+            split: (data) => `
+                <div class="resume-paper">
+                    <h2 contenteditable="false">${data.fullName || 'Your Name'}</h2>
+                    <h4 contenteditable="false">${data.desiredRole || 'Desired Role'}</h4>
+                    <p contenteditable="false" style="text-align: center; margin-bottom: 20px;">
+                    ${data.email ? `<i class="fas fa-envelope"></i> <a href="mailto:${data.email}" class="blue-text" contenteditable="false">${data.email}</a> | ` : ''}
+                    ${data.phone ? `<i class="fas fa-phone"></i> <a href="tel:${data.phone}" class="blue-text" contenteditable="false">${data.phone}</a> | ` : ''}
+                    ${data.linkedin ? `<i class="fab fa-linkedin"></i> <a href="${data.linkedin}" target="_blank" class="blue-text" contenteditable="false">LinkedIn</a> | ` : ''}
+                    ${data.github ? `<i class="fab fa-github"></i> <a href="${data.github}" target="_blank" class="blue-text" contenteditable="false">GitHub</a>` : ''}
+                    </p>
+
+                    <h3>Summary</h3>
+                    <p contenteditable="false">${data.summary || 'A highly motivated and results-oriented professional seeking to leverage skills and experience in a dynamic environment.'}</p>
+                    <h3>Experience</h3>
+                    <ul>
+                        ${data.experiences.map(exp => `
+                            <li class="experience-entry">
+                                <h4 contenteditable="false">${exp.company} - ${exp.title} (${exp.startDate} - ${exp.endDate})</h4>
+                                <ul contenteditable="false">
+                                    ${exp.description.split('\n').map(item => item ? `<li>${item}</li>` : '').join('')}
+                                </ul>
+                            </li>
+                        `).join('') || '<li contenteditable="false">Add your work experience here.</li>'}
+                    </ul>
+                    ${data.projects.length ? `
+                        <h3>Projects</h3>
+                        <ul>
+                            ${data.projects.map(proj => `
+                                <li class="project-entry">
+                                    <h4 contenteditable="false">${proj.name} (${proj.year})</h4>
+                                    <p contenteditable="false">${proj.description}</p>
+                                    ${proj.link ? `<p><a href="${proj.link}" target="_blank" contenteditable="false">Project Link</a></p>` : ''}
+                                </li>
+                            `).join('')}
+                        </ul>
+                    ` : ''}
+                    <h3>Education</h3>
+                    <ul>
+                        ${data.pgDegree ? `<li contenteditable="false"><strong>${data.pgUniversity}</strong> - ${data.pgDegree} (${data.pgYear})</li>` : ''}
+                        ${data.gradDegree ? `<li contenteditable="false"><strong>${data.gradUniversity}</strong> - ${data.gradDegree} (${data.gradYear})</li>` : ''}
+                        ${data.twelfthCollege ? `<li contenteditable="false"><strong>${data.twelfthCollege}</strong> - Intermediate/12th (${data.twelfthYear})</li>` : ''}
+                        ${data.tenthSchool ? `<li contenteditable="false"><strong>${data.tenthSchool}</strong> - 10th Class (${data.tenthYear})</li>` : ''}
+                        ${!data.pgDegree && !data.gradDegree && !data.twelfthCollege && !data.tenthSchool ? '<li contenteditable="false">Add your education details.</li>' : ''}
+                    </ul>
+                    <h3>Skills</h3>
+                    <p contenteditable="false"><strong>Key Skills:</strong> ${data.keySkills || 'List your skills here, e.g., JavaScript, Python, AWS, Project Management'}</p>
+                </div>
+            `,
+        };
+
+        let resumeData = {
+            fullName: '', desiredRole: '', email: '', phone: '', linkedin: '', github: '', summary: '',
+            experiences: [], projects: [],
+            gradDegree: '', gradYear: '', gradUniversity: '',
+            pgDegree: '', pgYear: '', pgUniversity: '',
+            twelfthYear: '', twelfthCollege: '',
+            tenthYear: '', tenthSchool: '',
+            keySkills: ''
+        };
+
+        const preview = document.getElementById('resume-preview');
+        // const templateCards = document.querySelectorAll('.template-card'); 
+        const fillEditFormBtn = document.getElementById('build-resume-btn');
+
+        const printResumeBtn = document.getElementById('print-resume-btn'); 
+        const downloadPdfBtn = document.getElementById('download-pdf-btn'); 
+
+        const buildResumeBtn = document.getElementById('build-resume-btn');
+        const resumeModal = document.getElementById('resumeModal');
+        const cancelModalBtn = document.getElementById('cancelModalBtn');
+        const resumeForm = document.getElementById('resume-form');
+        //const templateChoiceSelect = document.getElementById('templateChoice'); // No longer needed
+        const experienceSection = document.getElementById('experience-section').querySelector('.experience-entry-group');
+        const projectsSection = document.getElementById('projects-section').querySelector('.project-entry-group');
+        const addMoreBtns = document.querySelectorAll('.add-more-btn');
+        
+
+        function populateTemplate(data) {
+            preview.innerHTML = templates.split(data); 
+        }
+
+        function addExperienceField(exp = {}) {
+            const expDiv = document.createElement('div');
+            expDiv.classList.add('experience-entry');
+            expDiv.innerHTML = `
+                <button type="button" class="remove-btn">Remove</button>
+                <label>Company:</label>
+                <input type="text" class="exp-company" placeholder="e.g., Tech Solutions Inc." value="${exp.company || ''}" required>
+                <label>Title:</label>
+                <input type="text" class="exp-title" placeholder="e.g., Software Developer" value="${exp.title || ''}" required>
+                <label>Start Date (YYYY-MM):</label>
+                <input type="text" class="exp-start-date" placeholder="e.g., 2020-01" value="${exp.startDate || ''}" required>
+                <label>End Date (YYYY-MM or "Present"):</label>
+                <input type="text" class="exp-end-date" placeholder="e.g., 2023-12 or Present" value="${exp.endDate || ''}" required>
+                <label>Responsibilities (each point on a new line):</label>
+                <textarea class="exp-description" rows="3" placeholder="Developed feature X, resulting in Y&#10;Optimized process A, reducing B by C%">${exp.description || ''}</textarea>
+            `;
+            experienceSection.appendChild(expDiv);
+            expDiv.querySelector('.remove-btn').addEventListener('click', () => expDiv.remove());
+        }
+
+        function addProjectField(proj = {}) {
+            const projDiv = document.createElement('div');
+            projDiv.classList.add('project-entry');
+            projDiv.innerHTML = `
+                <button type="button" class="remove-btn">Remove</button>
+                <label>Project Name:</label>
+                <input type="text" class="proj-name" placeholder="e.g., E-commerce Platform" value="${proj.name || ''}" required>
+                <label>Year:</label>
+                <input type="number" class="proj-year" placeholder="e.g., 2023" min="1900" max="2025" value="${proj.year || ''}" required>
+                <label>Description:</label>
+                <textarea class="proj-description" rows="2" placeholder="Briefly describe the project, your role, and technologies used." required>${proj.description || ''}</textarea>
+                <label>Project Link (Optional):</label>
+                <input type="url" class="proj-link" placeholder="e.g., https://github.com/myproject" value="${proj.link || ''}">
+            `;
+            projectsSection.appendChild(projDiv);
+            projDiv.querySelector('.remove-btn').addEventListener('click', () => projDiv.remove());
+        }
+        if (fillEditFormBtn) {
+            fillEditFormBtn.addEventListener('click', () => {
+                resumeModal.style.display = 'flex';
+                // Populate form with current resumeData
+                document.getElementById('nameDisplay').textContent = resumeData.fullName;
+                document.getElementById('nameDisplay').classList.add('black-text');
+
+                    document.getElementById('roleDisplay').textContent = resumeData.desiredRole;
+                    document.getElementById('roleDisplay').classList.add('black-text');
+
+                    document.getElementById('emailDisplay').textContent = resumeData.email;
+                    document.getElementById('emailDisplay').classList.add('blue-text');
+
+                    document.getElementById('phoneDisplay').textContent = resumeData.phone;
+                    document.getElementById('phoneDisplay').classList.add('blue-text');
+
+                    document.getElementById('linkedinDisplay').textContent = resumeData.linkedin;
+                    document.getElementById('linkedinDisplay').classList.add('blue-text');
+
+                    document.getElementById('githubDisplay').textContent = resumeData.github;
+                    document.getElementById('githubDisplay').classList.add('blue-text');
+                        
+                document.getElementById('summary').value = resumeData.summary;
+
+           
+                experienceSection.innerHTML = '';
+                resumeData.experiences.forEach(exp => addExperienceField(exp));
+                if (resumeData.experiences.length === 0) addExperienceField(); 
+
+                projectsSection.innerHTML = '';
+                resumeData.projects.forEach(proj => addProjectField(proj));
+
+                document.getElementById('gradDegree').value = resumeData.gradDegree;
+                document.getElementById('gradYear').value = resumeData.gradYear;
+                document.getElementById('gradUniversity').value = resumeData.gradUniversity;
+                document.getElementById('pgDegree').value = resumeData.pgDegree;
+                document.getElementById('pgYear').value = resumeData.pgYear;
+                document.getElementById('pgUniversity').value = resumeData.pgUniversity;
+                document.getElementById('twelfthYear').value = resumeData.twelfthYear;
+                document.getElementById('twelfthCollege').value = resumeData.twelfthCollege;
+                document.getElementById('tenthYear').value = resumeData.tenthYear;
+                document.getElementById('tenthSchool').value = resumeData.tenthSchool;
+                document.getElementById('keySkills').value = resumeData.keySkills;
+            });
+        }
+
+        if (buildResumeBtn) {
+            buildResumeBtn.addEventListener('click', () => {
+                fillEditFormBtn.click();
+            });
+        }
+
+        if (cancelModalBtn) {
+            cancelModalBtn.addEventListener('click', () => {
+                resumeModal.style.display = 'none';
+            });
+        }
+        addMoreBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const target = e.target.dataset.target;
+                if (target === 'experience') {
+                    addExperienceField();
+                } else if (target === 'project') {
+                    addProjectField();
+                }
+            });
+        });
+
+        if (resumeForm) {
+            resumeForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                const experiences = [];
+                experienceSection.querySelectorAll('.experience-entry').forEach(expDiv => {
+                    experiences.push({
+                        company: expDiv.querySelector('.exp-company').value,
+                        title: expDiv.querySelector('.exp-title').value,
+                        startDate: expDiv.querySelector('.exp-start-date').value,
+                        endDate: expDiv.querySelector('.exp-end-date').value,
+                        description: expDiv.querySelector('.exp-description').value
+                    });
+                });
+
+                const projects = [];
+                projectsSection.querySelectorAll('.project-entry').forEach(projDiv => {
+                    projects.push({
+                        name: projDiv.querySelector('.proj-name').value,
+                        year: projDiv.querySelector('.proj-year').value,
+                        description: projDiv.querySelector('.proj-description').value,
+                        link: projDiv.querySelector('.proj-link').value
+                    });
+                });
+
+                resumeData = {
+                    fullName: document.getElementById('fullName').value,
+                    desiredRole: document.getElementById('desiredRole').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    linkedin: document.getElementById('linkedin').value,
+                    github: document.getElementById('github').value,
+                    summary: document.getElementById('summary').value,
+                    experiences: experiences,
+                    projects: projects,
+                    gradDegree: document.getElementById('gradDegree').value,
+                    gradYear: document.getElementById('gradYear').value,
+                    gradUniversity: document.getElementById('gradUniversity').value,
+                    pgDegree: document.getElementById('pgDegree').value,
+                    pgYear: document.getElementById('pgYear').value,
+                    pgUniversity: document.getElementById('pgUniversity').value,
+                    twelfthYear: document.getElementById('twelfthYear').value,
+                    twelfthCollege: document.getElementById('twelfthCollege').value,
+                    tenthYear: document.getElementById('tenthYear').value,
+                    tenthSchool: document.getElementById('tenthSchool').value,
+                    keySkills: document.getElementById('keySkills').value,
+                };
+
+                populateTemplate(resumeData); 
+                resumeModal.style.display = 'none';
+                document.getElementById('resume-section').scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+        window.onload = () => {
+            addExperienceField(); 
+            populateTemplate(resumeData);
+        };
+    </script>
+</body>
+</html> 

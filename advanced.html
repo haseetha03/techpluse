@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Web Development Courses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Global Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Color definitions, directly used instead of :root variables */
+        /* Primary: #9453c5 (Deep Purple) */
+        /* Secondary: #a139be (Teal Blue) */
+        /* Accent: #f7b32b (Vibrant Yellow) */
+        /* Dark Background: #9334ad (Very Dark Blue) */
+        /* Light Background: #f9f9fc (Off-white) */
+        /* Text Dark: #b05fd8; */
+        /* Text Light: #f0f0f0; */
+        /* Card Background: #ffffff; */
+        /* Shadow Color: rgba(0, 0, 0, 0.4); (retained from quiz page for transparency) */
+
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #9453c5, #a139be); /* primary-color, secondary-color */
+            color: #f0f0f0; /* text-light */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4); /* shadow-color */
+            animation: fadeInDown 1s ease-out;
+        }
+
+        p.subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+            opacity: 0;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            justify-content: center;
+            animation: fadeIn 1s ease-out 0.6s forwards;
+            opacity: 0;
+        }
+
+        .course-card {
+            background: rgba(255, 255, 255, 0.1); /* card-bg with transparency */
+            backdrop-filter: blur(8px);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: left;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* shadow-color */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* card-border */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4); /* shadow-color */
+        }
+
+        .course-card h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #f7b32b; /* accent-color */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-card p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7); /* text-light with transparency */
+            margin-bottom: 15px;
+        }
+
+        .course-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .course-meta .icon {
+            font-size: 1.1em;
+        }
+
+        .enroll-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #f7b32b; /* accent-color */
+            color: #333; /* Dark text for contrast */
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+        }
+
+        .enroll-btn:hover {
+            background: #ffc107; /* Slightly lighter yellow */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 50px;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.2); /* light-bg with transparency */
+            color: #f0f0f0; /* text-light */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Custom border color */
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            p.subtitle {
+                font-size: 1.1rem;
+            }
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+            .course-card {
+                padding: 20px;
+            }
+            .course-card h2 {
+                font-size: 1.6rem;
+            }
+            .course-card p {
+                font-size: 0.9rem;
+            }
+            .enroll-btn {
+                padding: 10px 20px;
+                font-size: 0.95rem;
+            }
+            .back-button {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            p.subtitle {
+                font-size: 1rem;
+                margin-bottom: 30px;
+            }
+            .course-card h2 {
+                font-size: 1.4rem;
+            }
+            .course-card p {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Advanced Web Development Courses</h1>
+        <p class="subtitle">Master cutting-edge technologies and architectural patterns for professional web development.</p>
+
+        <div class="course-grid">
+            <div class="course-card">
+                <div>
+                    <h2>Advanced React & Performance Optimization</h2>
+                    <p>Deep dive into React performance (memoization, lazy loading, profiling), concurrent mode, and building custom hooks for highly optimized and scalable UIs.</p>
+                </div>
+                <div class="course-meta">
+                    <span><span class="icon">⭐</span> 4.9</span>
+                    <span><span class="icon">🧑‍💻</span> 25k+ Enrolled</span>
+                </div>
+                <a href="#" class="enroll-btn">Enroll Now</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h2>Frontend Architecture & Design Patterns</h2>
+                    <p>Learn to design robust and maintainable frontend architectures. Explore patterns like Flux, Redux, MVVM, and clean architecture principles for large-scale applications.</p>
+                </div>
+                <div class="course-meta">
+                    <span><span class="icon">⭐</span> 4.8</span>
+                    <span><span class="icon">🧑‍💻</span> 18k+ Enrolled</span>
+                </div>
+                <a href="#" class="enroll-btn">Enroll Now</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h2>Progressive Web Apps (PWAs) & Offline Capabilities</h2>
+                    <p>Build high-performance, installable web applications that work offline and offer native-like experiences using Service Workers, Web App Manifests, and more.</p>
+                </div>
+                <div class="course-meta">
+                    <span><span class="icon">⭐</span> 4.7</span>
+                    <span><span class="icon">🧑‍💻</span> 14k+ Enrolled</span>
+                </div>
+                <a href="#" class="enroll-btn">Enroll Now</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h2>WebAssembly (Wasm) Fundamentals & Use Cases</h2>
+                    <p>Explore WebAssembly to run high-performance code in the browser. Learn its integration with JavaScript and practical applications for demanding web tasks.</p>
+                </div>
+                <div class="course-meta">
+                    <span><span class="icon">⭐</span> 4.6</span>
+                    <span><span class="icon">🧑‍💻</span> 9k+ Enrolled</span>
+                </div>
+                <a href="#" class="enroll-btn">Enroll Now</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h2>Microservices with Docker & Kubernetes</h2>
+                    <p>Design, implement, and deploy production-grade microservices architectures using Docker for containerization and Kubernetes for orchestration and scaling.</p>
+                </div>
+                <div class="course-meta">
+                    <span><span class="icon">⭐</span> 4.9</span>
+                    <span><span class="icon">🧑‍💻</span> 22k+ Enrolled</span>
+                </div>
+                <a href="#" class="enroll-btn">Enroll Now</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h2>Serverless Architectures (AWS Lambda, Azure Functions)</h2>
+                    <p>Build and deploy highly scalable and cost-effective applications using serverless computing, API Gateways, and managed database services on cloud platforms.</p>
+                </div>
+                <div class="course-meta">
+                    <span><span class="icon">⭐</span> 4.8</span>
+                    <span><span class="icon">🧑‍💻</span> 16k+ Enrolled</span>
+                </div>
+                <a href="#" class="enroll-btn">Enroll Now</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h2>Advanced Database Design & Optimization (SQL/NoSQL)</h2>
+                    <p>Master complex database schemas, indexing strategies, query optimization, sharding, replication, and choosing the right database for specific use cases.</p>
+                </div>
+                <div class="course-meta">
+                    <span><span class="icon">⭐</span> 4.7</span>
+                    <span><span class="icon">🧑‍💻</span> 13k+ Enrolled</span>
+                </div>
+                <a href="#" class="enroll-btn">Enroll Now</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h2>Distributed Systems & Message Queues</h2>
+                    <p>Learn about building resilient and fault-tolerant distributed systems using message queues (e.g., RabbitMQ, Kafka) and event-driven architectures.</p>
+                </div>
+                <div class="course-meta">
+                    <span><span class="icon">⭐</span> 4.6</span>
+                    <span><span class="icon">🧑‍💻</span> 10k+ Enrolled</span>
+                </div>
+                <a href="#" class="enroll-btn">Enroll Now</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h2>Web Security & Penetration Testing</h2>
+                    <p>Go beyond basic security to understand advanced attack vectors (OWASP Top 10), penetration testing techniques, and implementing comprehensive security measures for web applications.</p>
+                </div>
+                <div class="course-meta">
+                    <span><span class="icon">⭐</span> 4.7</span>
+                    <span><span class="icon">🧑‍💻</span> 11k+ Enrolled</span>
+                </div>
+                <a href="#" class="enroll-btn">Enroll Now</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h2>Real-time Data & WebSockets with GraphQL Subscriptions</h2>
+                    <p>Implement highly efficient real-time data flows using WebSockets, and learn how to leverage GraphQL Subscriptions for push notifications and live updates.</p>
+                </div>
+                <div class="course-meta">
+                    <span><span class="icon">⭐</span> 4.8</span>
+                    <span><span class="icon">🧑‍💻</span> 19k+ Enrolled</span>
+                </div>
+                <a href="#" class="enroll-btn">Enroll Now</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h2>Backend Framework Deep Dive (e.g., NestJS, Django REST Framework)</h2>
+                    <p>Master an advanced backend framework, focusing on complex features, authentication, authorization, testing, and deployment best practices for enterprise-level applications.</p>
+                </div>
+                <div class="course-meta">
+                    <span><span class="icon">⭐</span> 4.7</span>
+                    <span><span class="icon">🧑‍💻</span> 12k+ Enrolled</span>
+                </div>
+                <a href="#" class="enroll-btn">Enroll Now</a>
+            </div>
+
+            <div class="course-card">
+                <div>
+                    <h2>Performance Monitoring & Logging</h2>
+                    <p>Implement comprehensive monitoring, logging, and tracing solutions for web applications using tools like Prometheus, Grafana, ELK Stack, or cloud-native monitoring services.</p>
+                </div>
+                <div class="course-meta">
+                    <span><span class="icon">⭐</span> 4.6</span>
+                    <span><span class="icon">🧑‍💻</span> 8k+ Enrolled</span>
+                </div>
+                <a href="#" class="enroll-btn">Enroll Now</a>
+            </div>
+        </div>
+
+        <a href="javascript:history.back()" class="back-button">Back to Previous Page</a>
+    </div>
+</body>
+</html>
