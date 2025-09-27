@@ -254,17 +254,7 @@
       const email = document.getElementById('email').value.trim();
       const password = document.getElementById('password').value;
       
-      // Get existing users from a global variable or create empty array
-      let existingUsers = window.globalUsersData || [];
-      
-      // Check if email already exists
-      const existingUser = existingUsers.find(user => user.email === email);
-      if (existingUser) {
-        alert('An account with this email already exists. Please use a different email or login.');
-        return;
-      }
-      
-      // Store user data
+      // Store user data in the same format as your original login expects
       const userData = {
         name: name,
         email: email,
@@ -272,14 +262,15 @@
         createdAt: new Date().toISOString()
       };
       
-      existingUsers.push(userData);
+      // Store in a simple format that matches your login page expectation
+      const userDetails = {
+        email: email,
+        password: password,
+        name: name
+      };
       
-      // Store in global variable that persists across pages
-      window.globalUsersData = existingUsers;
-      
-      // Also store in a way that can be accessed by login page
-      window.name = 'techPulseSignupData';
-      window.techPulseUsers = existingUsers;
+      // Store for the current session
+      window.currentUser = userDetails;
       
       // Show success message
       document.getElementById('successMessage').style.display = 'block';
@@ -293,7 +284,6 @@
       }, 5000);
       
       console.log('User registered:', userData);
-      console.log('All users:', existingUsers);
     });
   </script>
 
