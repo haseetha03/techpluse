@@ -207,7 +207,7 @@
     <!-- Login Form -->
     <div class="login-form">
       <h2>Welcome Back</h2>
-      <form>
+      <form id="loginForm">
         <div class="input-group">
           <label for="email">Email</label>
           <input type="email" id="email" placeholder="Enter your email" required />
@@ -229,43 +229,48 @@
     </div>
   </div>
 
-
-
   <script>
-    document.querySelector(".btn-login").addEventListener("click", function(){
-      event.preventDefault();
+    // Initialize users data storage if it doesn't exist
+    if (!window.usersData) {
+      window.usersData = [];
+    }
 
-      let email = document.querySelector("#email").value;
-      let password = document.querySelector("#password").value;
-
-      if(email && password) {
-        let localStorageData = localStorage.getItem("UserDetails");
-
-        if(localStorageData) {
-
-          localStorageData = JSON.parse(localStorageData);
-
-          if(email === localStorageData.email && password === localStorageData.password) {
-            window.location.href = "tech_pulse.html";
-          }
-
-          else {
-            alert("Username/Password is incorrect!!..");
-          }
-
-        }
-
-        else {
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      
+      if (email && password) {
+        // Check if there are any registered users
+        if (window.usersData.length === 0) {
           alert("Hello Buddy!! Invalid Email. Please do sign up");
+          return;
         }
-      }
-
-      else {
+        
+        // Find user with matching email and password
+        const user = window.usersData.find(user => 
+          user.email === email && user.password === password
+        );
+        
+        if (user) {
+          alert(`Welcome back, ${user.name}!`);
+          // Redirect to main page
+          // window.location.href = "tech_pulse.html";
+          console.log('Login successful for:', user);
+        } else {
+          // Check if email exists but password is wrong
+          const emailExists = window.usersData.find(user => user.email === email);
+          if (emailExists) {
+            alert("Username/Password is incorrect!!..");
+          } else {
+            alert("Hello Buddy!! Invalid Email. Please do sign up");
+          }
+        }
+      } else {
         alert("Hello Buddy!! Please enter all the details");
       }
-
-
-    })
+    });
   </script>
 
 </body>
